@@ -533,14 +533,15 @@ footer p{color:var(--muted);font-size:15px}
     </div>
     <div class="f-meta">
       <p>Trung tâm lập trình và AI cho trẻ em · Phan Thiết</p>
+      <p><a href="mailto:lienhe@octix.vn" style="color:inherit;text-decoration:underline;text-underline-offset:3px">lienhe@octix.vn</a></p>
       <p>© 2026 Octix</p>
     </div>
   </div>
 </footer>
 
 <script>
-/* ===== Cấu hình: dán URL nhận form (Google Apps Script / Formspree) để lưu đăng ký ===== */
-const FORM_ENDPOINT = "";
+/* ===== Form đăng ký gửi về lienhe@octix.vn qua FormSubmit ===== */
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/lienhe@octix.vn";
 
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -653,8 +654,12 @@ const FORM_ENDPOINT = "";
     err.hidden=true;
     const data = { parent:fd.get('parent'), phone, kid:fd.get('kid'), age:fd.get('age'), time:fd.getAll('time').join(', '), note:fd.get('note'), at:new Date().toISOString() };
     if(FORM_ENDPOINT){
-      try{ await fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',body:JSON.stringify(data)}); }
-      catch(_){ err.textContent='Chưa gửi được. Ba mẹ kiểm tra mạng rồi bấm gửi lại nhé.'; err.hidden=false; return; }
+      const btn=form.querySelector('button[type=submit]'); if(btn){btn.disabled=true;}
+      const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Ghi chú':data.note||'—',
+        _subject:'Đăng ký học thử: '+data.parent+' · '+data.phone, _template:'table', _captcha:'false' };
+      try{ const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+        if(btn){btn.disabled=false;} if(!r.ok) throw new Error(r.status); }
+      catch(_){ if(btn){btn.disabled=false;} err.textContent='Chưa gửi được. Ba mẹ kiểm tra mạng rồi bấm gửi lại nhé.'; err.hidden=false; return; }
     } else {
       document.getElementById('done-title').textContent='Đây là bản xem trước';
       document.getElementById('done-text').textContent='Form chưa nối với nơi lưu đăng ký nên thông tin này chưa được gửi đi.';
