@@ -244,6 +244,8 @@ section{padding-block:clamp(72px,10vw,120px)}
 @keyframes badge{50%{transform:scale(1.06)}}
 .step.last .art{background:radial-gradient(120% 90% at 50% 0%,#1E2A7A,#0B0F2E);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
 .step.last .art::before{background-color:rgba(255,255,255,.08)}
+.m .more{display:inline-block;margin-top:10px;font-family:var(--f-display);font-weight:600;font-size:15px;color:var(--brand);text-decoration:none}
+.m .more:hover{text-decoration:underline}
 .soon-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .soon{position:relative;border-radius:var(--r-lg);padding:26px;background:#fff;border:1px dashed #C3CAEB;display:flex;flex-direction:column;gap:10px}
 .soon .tag{align-self:flex-start;font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--soft);color:var(--brand)}
@@ -335,6 +337,7 @@ footer p{color:var(--muted);font-size:15px}
     <nav class="nav-links" aria-label="Chính">
       <a href="#lo-trinh">Lộ trình</a>
       <a href="#cach-hoc">Cách học</a>
+      <a href="nguoi-sang-lap/">Người sáng lập</a>
       <a href="#hoi-dap">Hỏi đáp</a>
       <a class="btn btn-lime" href="#dang-ky">Học thử miễn phí</a>
     </nav>
@@ -507,7 +510,7 @@ footer p{color:var(--muted);font-size:15px}
         </div>
         <div class="m rv">
           <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span>
-          <div><h3>Người dạy là lập trình viên</h3><p>Octix rèn cho con những kỹ năng thật sự cần sau này: chia nhỏ vấn đề, tự tìm và sửa lỗi, kiên nhẫn làm đến khi chạy được.</p></div>
+          <div><h3>Người dạy là lập trình viên</h3><p>Octix rèn cho con những kỹ năng thật sự cần sau này: chia nhỏ vấn đề, tự tìm và sửa lỗi, kiên nhẫn làm đến khi chạy được.</p><a class="more" href="nguoi-sang-lap/">Gặp người sáng lập →</a></div>
         </div>
         <div class="m ai rv">
           <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="#0D1233"><path d="M12 2.5c.6 4.8 3.9 8.1 8.7 8.7-.1.5-.1.9 0 1.6-4.8.6-8.1 3.9-8.7 8.7-.6-4.8-3.9-8.1-8.7-8.7.1-.6.1-1 0-1.6 4.8-.6 8.1-3.9 8.7-8.7z"/></svg></span>
