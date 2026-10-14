@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Lớp lập trình Scratch cho bé 6–10 tuổi tại Phan Thiết. Lớp nhỏ 6–10 bé, học cuối tuần, mỗi buổi một sản phẩm.">
+<meta name="description" content="Lớp lập trình Scratch cho bé 7–11 tuổi tại Phan Thiết. Buổi đầu học thử miễn phí. Lớp nhỏ 6–10 bé, học cuối tuần, mỗi buổi một sản phẩm.">
 <link rel="icon" href="favicon.ico">
 <title>Octix Phan Thiết</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -157,7 +157,11 @@ section{padding-block:clamp(72px,10vw,120px)}
 .step .n{font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .step h3{font-size:21px;font-weight:700}
 .step p{font-size:15px;color:var(--muted)}
-.art{height:132px;border-radius:18px;background:#fff;position:relative;overflow:hidden}
+.art{height:156px;border-radius:18px;background:#fff;position:relative;overflow:hidden;padding-top:22px;box-shadow:inset 0 0 0 1px rgba(13,18,51,.06)}
+.art::before{content:"";position:absolute;left:0;right:0;top:0;height:22px;background:radial-gradient(circle at 12px 11px,#FF6B6B 3.5px,transparent 4px),radial-gradient(circle at 24px 11px,#FFC24B 3.5px,transparent 4px),radial-gradient(circle at 36px 11px,#3CF0C8 3.5px,transparent 4px),rgba(13,18,51,.05);z-index:3}
+.art::after{content:"";position:absolute;right:10px;top:5px;width:12px;height:12px;background:#4CBF56;clip-path:polygon(0 0,100% 18%,100% 62%,22% 50%,22% 100%,0 100%);z-index:3}
+.art svg{position:absolute;left:0;top:22px;width:100%;height:calc(100% - 22px)}
+.art svg *{transform-box:fill-box;transform-origin:center}
 .step.last{background:var(--night);color:var(--on-brand)}
 .step.last .n,.step.last p{color:rgba(255,255,255,.8)}
 .step.last .art{background:rgba(255,255,255,.12)}
@@ -166,20 +170,11 @@ section{padding-block:clamp(72px,10vw,120px)}
 .step.last .tags span{background:var(--lime)}
 
 /* art pieces */
-.a-dance i{position:absolute;bottom:22px;width:34px;height:34px;border-radius:50%;background:var(--brand);animation:hop 1.2s ease-in-out infinite}
-.a-dance i:nth-child(1){left:22%}.a-dance i:nth-child(2){left:44%;background:var(--sea);animation-delay:.2s}.a-dance i:nth-child(3){left:66%;background:#0E9F7A;animation-delay:.4s}
-@keyframes hop{50%{transform:translateY(-40px) scaleY(1.06)}}
-.a-card{display:grid;place-items:center}
-.a-card .bubble{background:var(--soft);color:var(--ink);font-family:var(--f-display);font-weight:600;font-size:14px;padding:10px 16px;border-radius:16px 16px 16px 4px;animation:pop 3s ease-in-out infinite}
-@keyframes pop{0%,15%{transform:scale(.6);opacity:0}25%,85%{transform:scale(1);opacity:1}100%{transform:scale(.9);opacity:0}}
 .a-stars i{position:absolute;width:16px;height:16px;background:var(--lime);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:fall 2.4s linear infinite}
 .a-stars i:nth-child(1){left:20%;animation-delay:0s}.a-stars i:nth-child(2){left:50%;animation-delay:.8s}.a-stars i:nth-child(3){left:76%;animation-delay:1.6s}
 .a-stars b{position:absolute;bottom:14px;left:40%;width:44px;height:12px;border-radius:999px;background:var(--brand);animation:slide 2.4s ease-in-out infinite alternate}
 @keyframes fall{from{top:-20px}to{top:120px}}
 @keyframes slide{from{left:14%}to{left:66%}}
-.a-demo{display:grid;place-items:center}
-.a-demo .trophy{font-family:var(--f-display);font-weight:800;font-size:15px;color:var(--ink);background:var(--lime);padding:10px 18px;border-radius:999px;box-shadow:0 0 0 0 rgba(200,243,29,.6);animation:glow 2s ease-out infinite}
-@keyframes glow{to{box-shadow:0 0 0 22px rgba(200,243,29,0)}}
 
 /* method */
 .method{background:var(--surface-2);border-radius:40px;margin-inline:clamp(8px,2vw,24px)}
@@ -192,7 +187,64 @@ section{padding-block:clamp(72px,10vw,120px)}
 .m.ai .ico{background:linear-gradient(135deg,var(--lime),var(--mint) 55%,var(--sky))}
 
 /* soon */
-.soon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+/* buổi 1: sàn nhảy */
+.a-dance{background:linear-gradient(#1A1F4A,#0B0F2E)}
+.a-dance .spot{fill:url(#spotG);animation:spotSw 2.4s ease-in-out infinite alternate;transform-origin:50% 0}
+@keyframes spotSw{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+.a-dance .tile{animation:disco 1.2s steps(1) infinite}
+.a-dance .tile:nth-child(2n){animation-delay:.6s}
+.a-dance .tile:nth-child(3n){animation-delay:.3s}
+@keyframes disco{0%{opacity:.95}50%{opacity:.3}}
+.a-dance .dancer{animation:groove .6s ease-in-out infinite alternate}
+@keyframes groove{from{transform:translateY(0) rotate(-8deg)}to{transform:translateY(-10px) rotate(8deg)}}
+.a-dance .cA{animation:cost 1.2s steps(1) infinite}
+.a-dance .cB{animation:cost 1.2s steps(1) infinite reverse}
+@keyframes cost{0%{opacity:1}50%{opacity:0}}
+.a-dance .note{fill:#C8F31D;font:700 18px var(--f-display);animation:noteUp 2.4s ease-out infinite;opacity:0}
+.a-dance .note:nth-of-type(2){animation-delay:.8s;fill:#3CF0C8}.a-dance .note:nth-of-type(3){animation-delay:1.6s;fill:#5FC8FF}
+@keyframes noteUp{0%{opacity:0;transform:translate(0,0) rotate(0)}20%{opacity:1}100%{opacity:0;transform:translate(14px,-46px) rotate(20deg)}}
+/* buổi 2: thiệp biết nói */
+.a-card .sky2{animation:bgSwap 6s steps(1) infinite}
+@keyframes bgSwap{0%{opacity:0}50%{opacity:1}}
+.a-card .heart{fill:#FF6B9A;animation:heartUp 3s ease-in infinite;opacity:0}
+.a-card .heart:nth-of-type(2){animation-delay:1s}.a-card .heart:nth-of-type(3){animation-delay:2s}
+@keyframes heartUp{0%{opacity:0;transform:translateY(0) scale(.6)}25%{opacity:1}100%{opacity:0;transform:translateY(-60px) scale(1.1)}}
+.a-card .who{animation:talk 3s ease-in-out infinite}
+@keyframes talk{0%,100%{transform:translateY(0)}10%,30%{transform:translateY(-6px)}20%{transform:translateY(0)}}
+.a-card .say1,.a-card .say2{animation:say 6s ease-in-out infinite}
+.a-card .say2{animation-delay:-3s}
+@keyframes say{0%,4%{opacity:0;transform:scale(.6)}10%,44%{opacity:1;transform:scale(1)}50%,100%{opacity:0;transform:scale(.8)}}
+.a-card .key{animation:press 3s ease-in-out infinite}
+@keyframes press{0%,6%,14%,100%{transform:translateY(0)}10%{transform:translateY(3px)}}
+.a-card .keyface{transition:none;animation:keyGlow 3s ease-in-out infinite}
+@keyframes keyGlow{0%,6%,16%,100%{fill:#fff}10%{fill:#C8F31D}}
+/* buổi 3: game hứng sao */
+.a-stars{background:linear-gradient(#EAF6FF,#fff)}
+.a-stars .fs{fill:#F5C400;stroke:#E0A800;stroke-width:1.5;animation:fall2 2.4s linear infinite}
+.a-stars .fs:nth-of-type(2){animation-delay:.8s}.a-stars .fs:nth-of-type(3){animation-delay:1.6s}
+@keyframes fall2{from{transform:translateY(-30px)}to{transform:translateY(120px)}}
+.a-stars .catcher{animation:slide2 2.4s ease-in-out infinite alternate}
+@keyframes slide2{from{transform:translateX(-62px)}to{transform:translateX(62px)}}
+.a-stars .plus{fill:#2440F0;font:800 14px var(--f-display);animation:plus 1.2s ease-out infinite;opacity:0}
+@keyframes plus{0%,40%{opacity:0;transform:translateY(0)}55%{opacity:1}100%{opacity:0;transform:translateY(-16px)}}
+.a-stars .score{font:700 12px var(--f-display);fill:#0D1233}
+/* buổi 4: ngày ra mắt */
+.a-demo{background:radial-gradient(120% 90% at 50% 0%,#1E2A7A,#0B0F2E)}
+.a-demo .ground{animation:run .8s linear infinite}
+@keyframes run{to{transform:translateX(-24px)}}
+.a-demo .obst{animation:obst 2.4s linear infinite}
+@keyframes obst{from{transform:translateX(150px)}to{transform:translateX(-170px)}}
+.a-demo .coin{animation:obst 2.4s linear infinite;animation-delay:-1.2s}
+.a-demo .hero{animation:jump 2.4s ease-in-out infinite}
+@keyframes jump{0%,30%,62%,100%{transform:translateY(0)}46%{transform:translateY(-34px)}}
+.a-demo .conf{animation:conf 2.6s linear infinite;opacity:0}
+.a-demo .conf:nth-of-type(2n){animation-delay:.6s}.a-demo .conf:nth-of-type(3n){animation-delay:1.3s}.a-demo .conf:nth-of-type(5n){animation-delay:1.9s}
+@keyframes conf{0%{opacity:0;transform:translateY(-10px) rotate(0)}10%{opacity:1}100%{opacity:0;transform:translateY(110px) rotate(260deg)}}
+.a-demo .badge{animation:badge 2s ease-in-out infinite}
+@keyframes badge{50%{transform:scale(1.06)}}
+.step.last .art{background:radial-gradient(120% 90% at 50% 0%,#1E2A7A,#0B0F2E);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.step.last .art::before{background-color:rgba(255,255,255,.08)}
+.soon-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .soon{position:relative;border-radius:var(--r-lg);padding:26px;background:#fff;border:1px dashed #C3CAEB;display:flex;flex-direction:column;gap:10px}
 .soon .tag{align-self:flex-start;font-family:var(--f-display);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--soft);color:var(--brand)}
 .soon h3{font-size:21px;font-weight:700}
@@ -284,7 +336,7 @@ footer p{color:var(--muted);font-size:15px}
       <a href="#lo-trinh">Lộ trình</a>
       <a href="#cach-hoc">Cách học</a>
       <a href="#hoi-dap">Hỏi đáp</a>
-      <a class="btn btn-lime" href="#dang-ky">Đăng ký học thử</a>
+      <a class="btn btn-lime" href="#dang-ky">Học thử miễn phí</a>
     </nav>
   </div>
 </header>
@@ -297,9 +349,9 @@ footer p{color:var(--muted);font-size:15px}
       <div>
         <span class="pill tip" tabindex="0" data-tip="Vì Octix không chắc lớp đầu tiên mở chưa :D" aria-label="Lớp Scratch thứ hai tại Phan Thiết. Vì Octix không chắc lớp đầu tiên mở chưa"><b>MỚI</b> Lớp Scratch thứ hai tại Phan Thiết</span>
         <h1>Con không chỉ chơi game.<span class="l2">Con tự làm ra</span><span class="l2"><span class="typed" id="typed">game</span></span></h1>
-        <p class="lead">Lớp lập trình Scratch cho bé 6–10 tuổi. Kéo thả từng khối lệnh, bé tự làm hoạt hình và trò chơi của riêng mình. Sau 4 buổi cuối tuần, bé mang về một game hoàn chỉnh để khoe với ba mẹ.</p>
+        <p class="lead">Lớp lập trình Scratch cho bé 7–11 tuổi. Kéo thả từng khối lệnh, bé tự làm hoạt hình và trò chơi của riêng mình. Sau 4 buổi cuối tuần, bé mang về một game hoàn chỉnh để khoe với ba mẹ.</p>
         <div class="ctas">
-          <a class="btn btn-lime" href="#dang-ky">Đăng ký học thử
+          <a class="btn btn-lime" href="#dang-ky">Học thử miễn phí
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="#lo-trinh">Xem bé học gì</a>
         </div>
@@ -307,6 +359,7 @@ footer p{color:var(--muted);font-size:15px}
           <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8F31D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lớp nhỏ 6–10 bé</span>
           <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8F31D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Học Thứ 7 và Chủ nhật</span>
           <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8F31D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Mỗi buổi một sản phẩm</span>
+          <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8F31D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Buổi đầu miễn phí</span>
         </div>
       </div>
 
@@ -375,28 +428,61 @@ footer p{color:var(--muted);font-size:15px}
       </div>
       <div class="road">
         <article class="step rv">
-          <div class="art a-dance" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="art a-dance" aria-hidden="true"><svg viewBox="0 0 240 134" preserveAspectRatio="xMidYMid slice">
+            <defs><radialGradient id="spotG" cx="50%" cy="0%" r="100%"><stop offset="0" stop-color="#C8F31D" stop-opacity=".55"/><stop offset="1" stop-color="#C8F31D" stop-opacity="0"/></radialGradient><linearGradient id="dB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3CF0C8"/><stop offset="1" stop-color="#2440F0"/></linearGradient></defs>
+            <polygon class="spot" points="120,0 70,118 170,118"/>
+            <g><rect class="tile" x="0" y="112" width="40" height="22" fill="#2440F0"/><rect class="tile" x="40" y="112" width="40" height="22" fill="#3CF0C8"/><rect class="tile" x="80" y="112" width="40" height="22" fill="#C8F31D"/><rect class="tile" x="120" y="112" width="40" height="22" fill="#5FC8FF"/><rect class="tile" x="160" y="112" width="40" height="22" fill="#2440F0"/><rect class="tile" x="200" y="112" width="40" height="22" fill="#3CF0C8"/></g>
+            <g class="dancer">
+              <g class="cA"><path d="M98 64 L84 42 M142 64 L156 42" stroke="#5FC8FF" stroke-width="7" stroke-linecap="round"/></g>
+              <g class="cB"><path d="M98 72 L80 86 M142 72 L160 86" stroke="#5FC8FF" stroke-width="7" stroke-linecap="round"/></g>
+              <path d="M108 104 L102 116 M132 104 L138 116" stroke="#5FC8FF" stroke-width="7" stroke-linecap="round"/>
+              <circle cx="120" cy="80" r="26" fill="url(#dB)"/>
+              <rect x="112" y="72" width="6" height="12" rx="3" fill="#fff"/><rect x="122" y="72" width="6" height="12" rx="3" fill="#fff"/>
+            </g>
+            <text class="note" x="164" y="70">♪</text><text class="note" x="60" y="66">♫</text><text class="note" x="178" y="92">♪</text>
+          </svg></div>
           <span class="n">Buổi 1</span>
           <h3>Nhân vật biết nhảy múa</h3>
           <p>Làm quen Scratch, cho nhân vật di chuyển, đổi trang phục và phát nhạc.</p>
           <div class="tags"><span>Chuyển động</span><span>Âm thanh</span></div>
         </article>
         <article class="step rv">
-          <div class="art a-card" aria-hidden="true"><span class="bubble">Chúc mẹ vui!</span></div>
+          <div class="art a-card" aria-hidden="true"><svg viewBox="0 0 240 134" preserveAspectRatio="xMidYMid slice">
+            <rect width="240" height="134" fill="#DFF3FF"/>
+            <g class="sky2"><rect width="240" height="134" fill="#FFE3EC"/><circle cx="200" cy="30" r="14" fill="#FFC24B"/></g>
+            <path d="M0 108 Q60 92 120 106 T240 102 V134 H0Z" fill="#B8F0C8"/>
+            <circle cx="44" cy="28" r="10" fill="#fff" opacity=".9"/><circle cx="56" cy="28" r="12" fill="#fff" opacity=".9"/>
+            <path class="heart" d="M60 80 c-6-8 6-14 8-6 c2-8 14-2 8 6 l-8 8z"/><path class="heart" d="M36 92 c-5-7 5-12 7-5 c2-7 12-2 7 5 l-7 7z"/><path class="heart" d="M84 96 c-4-6 4-10 6-4 c2-6 10-2 6 4 l-6 6z"/>
+            <g class="who"><circle cx="62" cy="96" r="22" fill="#2440F0"/><rect x="54" y="88" width="6" height="12" rx="3" fill="#fff"/><rect x="64" y="88" width="6" height="12" rx="3" fill="#fff"/></g>
+            <g class="say1"><rect x="92" y="18" width="112" height="34" rx="14" fill="#fff" stroke="#0D1233" stroke-opacity=".12"/><path d="M100 50 L90 64 L112 52Z" fill="#fff"/><text x="148" y="40" text-anchor="middle" style="font:700 13px var(--f-display);fill:#0D1233">Chúc mẹ vui!</text></g>
+            <g class="say2"><rect x="92" y="18" width="112" height="34" rx="14" fill="#C8F31D"/><path d="M100 50 L90 64 L112 52Z" fill="#C8F31D"/><text x="148" y="40" text-anchor="middle" style="font:700 13px var(--f-display);fill:#0D1233">Yêu mẹ nhiều ♥</text></g>
+            <g class="key"><rect x="146" y="98" width="58" height="24" rx="7" fill="#0D1233" opacity=".15" transform="translate(0 3)"/><rect class="keyface" x="146" y="98" width="58" height="24" rx="7" fill="#fff" stroke="#0D1233" stroke-opacity=".25"/><text x="175" y="114" text-anchor="middle" style="font:600 10px var(--f-display);fill:#0D1233">phím cách</text></g>
+          </svg></div>
           <span class="n">Buổi 2</span>
           <h3>Thiệp chúc mừng biết nói</h3>
           <p>Kể một câu chuyện có lời thoại, đổi phông nền và phản hồi khi bấm phím.</p>
           <div class="tags"><span>Sự kiện</span><span>Thứ tự lệnh</span></div>
         </article>
         <article class="step rv">
-          <div class="art a-stars" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+          <div class="art a-stars" aria-hidden="true"><svg viewBox="0 0 240 134" preserveAspectRatio="xMidYMid slice">
+            <path class="fs" d="M60 0 l4 9 10 1 -8 6 3 10 -9-5 -9 5 3-10 -8-6 10-1z"/><path class="fs" d="M120 0 l4 9 10 1 -8 6 3 10 -9-5 -9 5 3-10 -8-6 10-1z"/><path class="fs" d="M182 0 l4 9 10 1 -8 6 3 10 -9-5 -9 5 3-10 -8-6 10-1z"/>
+            <g class="catcher"><rect x="96" y="104" width="48" height="16" rx="8" fill="#2440F0"/><rect x="111" y="108" width="4" height="8" rx="2" fill="#fff"/><rect x="125" y="108" width="4" height="8" rx="2" fill="#fff"/><text class="plus" x="120" y="96" text-anchor="middle">+1</text></g>
+            <rect x="30" y="8" width="62" height="20" rx="10" fill="#fff" stroke="#0D1233" stroke-opacity=".12"/><text class="score" x="61" y="22" text-anchor="middle">Điểm ★</text>
+          </svg></div>
           <span class="n">Buổi 3</span>
           <h3>Game hứng sao</h3>
           <p>Điều khiển bằng phím mũi tên, đếm điểm, xử lý khi hai nhân vật chạm nhau.</p>
           <div class="tags"><span>Vòng lặp</span><span>Biến</span><span>Điều kiện</span></div>
         </article>
         <article class="step last rv">
-          <div class="art a-demo" aria-hidden="true"><span class="trophy">Game của con</span></div>
+          <div class="art a-demo" aria-hidden="true"><svg viewBox="0 0 240 134" preserveAspectRatio="xMidYMid slice">
+            <rect class="conf" x="20" y="-6" width="5" height="9" rx="1.5" fill="#C8F31D"/><rect class="conf" x="46" y="-6" width="5" height="9" rx="1.5" fill="#3CF0C8"/><rect class="conf" x="78" y="-6" width="5" height="9" rx="1.5" fill="#5FC8FF"/><rect class="conf" x="104" y="-6" width="5" height="9" rx="1.5" fill="#FF6B9A"/><rect class="conf" x="150" y="-6" width="5" height="9" rx="1.5" fill="#C8F31D"/><rect class="conf" x="176" y="-6" width="5" height="9" rx="1.5" fill="#3CF0C8"/><rect class="conf" x="204" y="-6" width="5" height="9" rx="1.5" fill="#5FC8FF"/><rect class="conf" x="226" y="-6" width="5" height="9" rx="1.5" fill="#FFC24B"/>
+            <g class="ground"><path d="M0 112 H264" stroke="#3CF0C8" stroke-width="3"/><path d="M0 120 H264" stroke="#3CF0C8" stroke-opacity=".35" stroke-width="2" stroke-dasharray="10 14"/></g>
+            <g class="obst"><rect x="120" y="94" width="16" height="18" rx="4" fill="#5FC8FF"/></g>
+            <g class="coin"><circle cx="120" cy="66" r="7" fill="#C8F31D"/></g>
+            <g class="hero"><circle cx="64" cy="96" r="16" fill="#C8F31D"/><rect x="56" y="90" width="6" height="12" rx="3" fill="#0D1233"/><rect x="66" y="90" width="6" height="12" rx="3" fill="#0D1233"/></g>
+            <g class="badge"><rect x="100" y="10" width="106" height="26" rx="13" fill="#C8F31D"/><text x="153" y="28" text-anchor="middle" style="font:800 12px var(--f-display);fill:#0D1233">▶ Game của con</text></g>
+          </svg></div>
           <span class="n">Buổi 4</span>
           <h3>Ngày ra mắt game</h3>
           <p>Bé tự thiết kế game riêng, thêm luật chơi, rồi trình bày cho ba mẹ chơi thử.</p>
@@ -421,11 +507,11 @@ footer p{color:var(--muted);font-size:15px}
         </div>
         <div class="m rv">
           <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span>
-          <div><h3>Người dạy là kỹ sư phần mềm</h3><p>Đang làm nghề lập trình mỗi ngày, nên biết kỹ năng nào thật sự cần cho con sau này.</p></div>
+          <div><h3>Người dạy là lập trình viên</h3><p>Octix rèn cho con những kỹ năng thật sự cần sau này: chia nhỏ vấn đề, tự tìm và sửa lỗi, kiên nhẫn làm đến khi chạy được.</p></div>
         </div>
         <div class="m ai rv">
           <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="#0D1233"><path d="M12 2.5c.6 4.8 3.9 8.1 8.7 8.7-.1.5-.1.9 0 1.6-4.8.6-8.1 3.9-8.7 8.7-.6-4.8-3.9-8.1-8.7-8.7.1-.6.1-1 0-1.6 4.8-.6 8.1-3.9 8.7-8.7z"/></svg></span>
-          <div><h3>AI giúp thầy, không làm thay bé</h3><p>Thầy dùng AI để soạn thử thách vừa sức từng bé và giải thích lỗi bằng lời dễ hiểu. Code vẫn do bé tự làm.</p></div>
+          <div><h3>AI là trợ thủ, không làm thay bé</h3><p>Thầy dùng AI để chuẩn bị thử thách vừa sức từng bé và giải thích lỗi bằng lời dễ hiểu. Mọi khối lệnh vẫn do bé tự tay ghép.</p></div>
         </div>
         <div class="m rv">
           <span class="ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18h3"/><path d="m9.5 9.5 2 2 3.5-3.5"/></svg></span>
@@ -446,7 +532,8 @@ footer p{color:var(--muted);font-size:15px}
       <div class="soon-grid">
         <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Robotics</h3><span class="age">8–12 tuổi</span><p>Lắp ráp robot và lập trình cho robot di chuyển, né vật cản, làm nhiệm vụ.</p></div>
         <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Tin học trẻ &amp; Python</h3><span class="age">11 tuổi trở lên</span><p>Viết code bằng chữ với Python, làm chương trình và game nhỏ, ôn luyện thi Tin học trẻ.</p></div>
-        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Gia sư AI công sở</h3><span class="age">Người đi làm</span><p>Dùng AI để soạn văn bản, làm báo cáo, xử lý bảng tính nhanh hơn trong công việc hằng ngày.</p></div>
+        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Lập trình Web &amp; App</h3><span class="age">12 tuổi trở lên</span><p>Tự làm website và ứng dụng điện thoại của riêng mình, từ thiết kế giao diện đến đưa lên mạng cho mọi người dùng.</p></div>
+        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Gia sư AI công sở</h3><span class="age">Người đi làm</span><p>Tận dụng AI để tự động hoá quy trình lặp lại, tạo báo cáo tự động và xây dựng AI agent làm việc cùng bạn: từ email, bảng tính đến kết nối các phần mềm trong công ty.</p></div>
       </div>
     </div>
   </section>
@@ -461,10 +548,10 @@ footer p{color:var(--muted);font-size:15px}
       </div>
       <div>
         <details open><summary>Bé chưa biết dùng máy tính có học được không?</summary><p>Được. Buổi 1 bắt đầu từ cách cầm chuột và kéo thả. Scratch dùng khối lệnh có hình và chữ ngắn, bé đọc được chữ là học được.</p></details>
-        <details><summary>Bé mấy tuổi thì vừa?</summary><p>Lớp hợp nhất với bé 6–10 tuổi. Bé 11 tuổi trở lên mới học lần đầu vẫn học được, Octix sẽ giao thử thách khó hơn.</p></details>
+        <details><summary>Bé mấy tuổi thì vừa?</summary><p>Lớp dành cho bé 7–11 tuổi. Bé lớn hơn mới bắt đầu học lập trình vẫn học được, Octix sẽ giao thử thách khó hơn.</p></details>
         <details><summary>Học ở đâu, vào lúc nào?</summary><p>Lớp học tại Phan Thiết, vào Thứ 7 và Chủ nhật. Octix gửi địa chỉ và giờ học cụ thể khi xác nhận lịch với ba mẹ.</p></details>
-        <details><summary>Bé có cần mang laptop không?</summary><p>Ba mẹ cho Octix biết khi đăng ký. Nếu nhà có laptop, bé mang theo sẽ tiện luyện tiếp ở nhà.</p></details>
-        <details><summary>Học phí bao nhiêu?</summary><p>Khóa đầu tiên có học phí ưu đãi cho 6 bạn đăng ký sớm. Octix báo chi tiết qua Zalo sau khi ba mẹ đăng ký.</p></details>
+        <details><summary>Bé có cần mang laptop không?</summary><p>Không bắt buộc. Bé chưa có laptop thì Octix cung cấp máy trong giờ học. Nếu nhà có laptop, bé mang theo sẽ quen máy và tiện luyện tiếp ở nhà.</p></details>
+        <details><summary>Học phí bao nhiêu?</summary><p>Buổi học đầu tiên miễn phí để bé học thử. Nếu bé thích và muốn học tiếp, Octix sẽ thông báo học phí chi tiết cho ba mẹ.</p></details>
         <details><summary>Học xong 4 buổi thì học tiếp gì?</summary><p>Bé có thể học tiếp Scratch nâng cao, sau đó chuyển sang Robotics hoặc Python khi các lớp này mở.</p></details>
       </div>
     </div>
@@ -476,9 +563,9 @@ footer p{color:var(--muted);font-size:15px}
       <div class="reg-box">
         <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
         <div>
-          <span class="eyebrow" style="color:var(--lime)">Đăng ký học thử</span>
+          <span class="eyebrow" style="color:var(--lime)">Buổi đầu học thử miễn phí</span>
           <h2 style="margin-top:14px">Giữ chỗ cho bé ở lớp đầu tiên</h2>
-          <p class="lead">Điền thông tin dưới đây. Octix gọi lại qua Zalo để tư vấn và chọn buổi học thử phù hợp với lịch của bé.</p>
+          <p class="lead">Điền thông tin dưới đây. Octix gọi lại qua Zalo để tư vấn và chọn buổi học thử miễn phí phù hợp với lịch của bé.</p>
           <div class="seats" aria-label="Lớp có 6 chỗ">
             <div class="seat-row" aria-hidden="true"><i class="f"></i><i></i><i></i><i></i><i></i><i></i></div>
             <small>Lớp đầu tiên chỉ nhận 6 bé</small>
@@ -495,7 +582,7 @@ footer p{color:var(--muted);font-size:15px}
               <label for="f-age">Tuổi của bé
                 <select id="f-age" name="age" required>
                   <option value="">Chọn tuổi</option>
-                  <option>6 tuổi</option><option>7 tuổi</option><option>8 tuổi</option><option>9 tuổi</option><option>10 tuổi</option><option>11 tuổi trở lên</option>
+                  <option>7 tuổi</option><option>8 tuổi</option><option>9 tuổi</option><option>10 tuổi</option><option>11 tuổi</option><option>Tuổi khác (ghi chú bên dưới)</option>
                 </select>
               </label>
             </div>
@@ -508,6 +595,14 @@ footer p{color:var(--muted);font-size:15px}
                 <label for="t4"><input type="checkbox" id="t4" name="time" value="Chiều Chủ nhật"><span>Chiều Chủ nhật</span></label>
               </div>
             </fieldset>
+            <fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
+              <legend style="font-size:14px;font-weight:600;padding:0;margin-bottom:8px">Bé đã có laptop chưa?</legend>
+              <div class="chips">
+                <label for="l1"><input type="radio" id="l1" name="laptop" value="Có, bé sẽ mang theo"><span>Có, bé sẽ mang theo</span></label>
+                <label for="l2"><input type="radio" id="l2" name="laptop" value="Chưa có"><span>Chưa có</span></label>
+              </div>
+              <small style="font-size:13px;color:var(--muted)">Không có cũng không sao, Octix sẽ cung cấp máy trong giờ học.</small>
+            </fieldset>
             <label for="f-note">Ghi chú<textarea id="f-note" name="note" rows="2" placeholder="Bé đã biết dùng máy tính chưa, ba mẹ muốn hỏi gì thêm…"></textarea></label>
             <p class="err" id="err" hidden></p>
             <button class="btn btn-brand" type="submit">Gửi đăng ký</button>
@@ -516,7 +611,7 @@ footer p{color:var(--muted);font-size:15px}
           <div class="done" id="done" hidden>
             <span class="ico" aria-hidden="true" style="background:var(--lime);color:var(--ink)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
             <h3 id="done-title">Octix đã nhận đăng ký</h3>
-            <p id="done-text">Octix sẽ gọi lại qua Zalo trong ngày để chọn buổi học thử cho bé.</p>
+            <p id="done-text">Octix sẽ gọi lại qua Zalo trong ngày để chọn buổi học thử miễn phí cho bé.</p>
             <button class="btn btn-brand" type="button" id="again">Đăng ký thêm một bé</button>
           </div>
         </form>
@@ -652,10 +747,10 @@ const FORM_ENDPOINT = "https://formsubmit.co/ajax/lienhe@octix.vn";
     if(!/^(\+?84|0)\d{9,10}$/.test(phone)){ err.textContent='Số điện thoại chưa đúng. Ba mẹ nhập 10 số, ví dụ 0912 345 678.'; err.hidden=false; form.querySelector('#f-phone').focus(); return; }
     if(!fd.get('age')){ err.textContent='Ba mẹ chọn tuổi của bé giúp Octix nhé.'; err.hidden=false; form.querySelector('#f-age').focus(); return; }
     err.hidden=true;
-    const data = { parent:fd.get('parent'), phone, kid:fd.get('kid'), age:fd.get('age'), time:fd.getAll('time').join(', '), note:fd.get('note'), at:new Date().toISOString() };
+    const data = { parent:fd.get('parent'), phone, kid:fd.get('kid'), age:fd.get('age'), time:fd.getAll('time').join(', '), laptop:fd.get('laptop')||'', note:fd.get('note'), at:new Date().toISOString() };
     if(FORM_ENDPOINT){
       const btn=form.querySelector('button[type=submit]'); if(btn){btn.disabled=true;}
-      const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Ghi chú':data.note||'—',
+      const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Laptop':data.laptop||'—', 'Ghi chú':data.note||'—',
         _subject:'Đăng ký học thử: '+data.parent+' · '+data.phone, _template:'table', _captcha:'false' };
       try{ const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
         if(btn){btn.disabled=false;} if(!r.ok) throw new Error(r.status); }
