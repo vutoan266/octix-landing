@@ -326,6 +326,29 @@ footer p{color:var(--muted);font-size:15px}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv.pre{transform:none}
 }
+
+/* mobile menu */
+.nav-links{margin-left:auto}
+.menu-btn{margin-left:10px}
+@media (max-width:360px){.nav .btn{padding:9px 12px;font-size:14px}.nav .logo svg{height:26px}}
+.menu-btn{display:none;width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;place-items:center;padding:0}
+.menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:18px;height:2px;border-radius:2px;background:currentColor;position:relative;transition:transform .25s,background .25s}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}
+.menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+.nav.open .menu-btn span{background:transparent}
+.nav.open .menu-btn span::before{transform:translateY(6px) rotate(45deg)}
+.nav.open .menu-btn span::after{transform:translateY(-6px) rotate(-45deg)}
+.mnav{display:none}
+@media (max-width:760px){
+  .menu-btn{display:grid}
+  .nav-links{gap:10px}
+  .nav.open{background:rgba(11,15,46,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+  .nav.open .mnav{display:flex}
+  .mnav{flex-direction:column;padding:6px clamp(16px,4vw,40px) 18px;border-top:1px solid rgba(255,255,255,.12)}
+  .mnav a{font-family:var(--f-display);font-weight:500;font-size:18px;color:#fff;text-decoration:none;padding:14px 4px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .mnav a:last-child{border-bottom:0}
+  .mnav a[aria-current]{color:var(--lime)}
+}
 </style>
 </head>
 <body>
@@ -341,7 +364,9 @@ footer p{color:var(--muted);font-size:15px}
       <a href="#hoi-dap">Hỏi đáp</a>
       <a class="btn btn-lime" href="#dang-ky">Học thử miễn phí</a>
     </nav>
+    <button class="menu-btn" id="menu-btn" type="button" aria-label="Mở menu" aria-expanded="false" aria-controls="mnav"><span></span></button>
   </div>
+  <nav class="mnav" id="mnav" aria-label="Menu di động"><a href="#lo-trinh">Lộ trình</a><a href="#cach-hoc">Cách học</a><a href="nguoi-sang-lap/">Người sáng lập</a><a href="#hoi-dap">Hỏi đáp</a></nav>
 </header>
 
 <main id="top">
@@ -765,6 +790,15 @@ const FORM_ENDPOINT = "https://formsubmit.co/ajax/lienhe@octix.vn";
     fields.hidden=true; done.hidden=false;
   });
   document.getElementById('again').addEventListener('click', ()=>{ form.reset(); done.hidden=true; fields.hidden=false; });
+
+  /* mobile menu */
+  (function(){ const nav=document.getElementById('nav'), b=document.getElementById('menu-btn'), m=document.getElementById('mnav'); if(!b) return;
+    const set=o=>{ nav.classList.toggle('open',o); b.setAttribute('aria-expanded',o); b.setAttribute('aria-label',o?'Đóng menu':'Mở menu'); };
+    b.addEventListener('click',()=>set(!nav.classList.contains('open')));
+    m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
+    addEventListener('keydown',e=>{ if(e.key==='Escape') set(false); });
+    matchMedia('(min-width:761px)').addEventListener('change',e=>{ if(e.matches) set(false); });
+  })();
 })();
 </script>
 
