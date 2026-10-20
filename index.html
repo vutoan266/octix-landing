@@ -661,6 +661,7 @@ footer p{color:var(--muted);font-size:15px}
 <script>
 /* ===== Form đăng ký gửi về lienhe@octix.vn qua FormSubmit ===== */
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/lienhe@octix.vn";
+const LEADS_API = "https://fseereakzmfldauphfrd.supabase.co/rest/v1/leads", LEADS_KEY = "sb_publishable_0lAUvaignHcL_F2jBNW7Tg_1AqcH-uL";
 
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -776,8 +777,12 @@ const FORM_ENDPOINT = "https://formsubmit.co/ajax/lienhe@octix.vn";
       const btn=form.querySelector('button[type=submit]'); if(btn){btn.disabled=true;}
       const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Laptop':data.laptop||'—', 'Ghi chú':data.note||'—',
         _subject:'Đăng ký học thử: '+data.parent+' · '+data.phone, _template:'table', _captcha:'false' };
-      try{ const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
-        if(btn){btn.disabled=false;} if(!r.ok) throw new Error(r.status); }
+      const lead={ source:'web', parent_name:String(data.parent).trim().slice(0,120), phone:data.phone.slice(0,20), kid_name:(data.kid||'').toString().trim().slice(0,120)||null,
+        kid_age:String(data.age).slice(0,60), preferred_times:data.time.slice(0,200)||null, has_laptop:(data.laptop||'').toString().slice(0,60)||null, note:(data.note||'').toString().trim().slice(0,2000)||null };
+      try{ const rs=await Promise.allSettled([
+          fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}),
+          fetch(LEADS_API,{method:'POST',headers:{'Content-Type':'application/json','apikey':LEADS_KEY,'Prefer':'return=minimal'},body:JSON.stringify(lead)}) ]);
+        if(btn){btn.disabled=false;} if(!rs.some(x=>x.status==='fulfilled'&&x.value.ok)) throw new Error('send'); }
       catch(_){ if(btn){btn.disabled=false;} err.textContent='Chưa gửi được. Ba mẹ kiểm tra mạng rồi bấm gửi lại nhé.'; err.hidden=false; return; }
     } else {
       document.getElementById('done-title').textContent='Đây là bản xem trước';
