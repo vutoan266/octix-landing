@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Lớp lập trình Scratch cho bé 7–11 tuổi tại Phan Thiết. Buổi học thử miễn phí 90 phút: bé tự làm game Chọc bong bóng có tính điểm. Lớp nhỏ 6–10 bé, mỗi buổi một game.">
+<meta name="description" content="Lớp lập trình Scratch cho bé 7–11 tuổi tại Phan Thiết. Buổi học thử miễn phí 90 phút: bé tự làm xong một game ngay trong buổi. Lớp nhỏ 6–10 bé, mỗi buổi một game.">
 <link rel="icon" href="favicon.ico">
 <title>Octix Phan Thiết</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -234,14 +234,16 @@ section{padding-block:clamp(72px,10vw,120px)}
 .take b{color:#fff}
 .take .btn{align-self:flex-start}
 @media (max-width:860px){.trial-grid{grid-template-columns:1fr}.take{position:static}}
-/* buổi 1: chọc bong bóng */
-.a-bub{background:linear-gradient(#8FD8FF,#E4F6FF)}
-.a-bub .bb{animation:bubUp 3.6s linear infinite}
-.a-bub .bb:nth-of-type(2){animation-delay:1.2s}.a-bub .bb:nth-of-type(3){animation-delay:2.4s}
-@keyframes bubUp{from{transform:translateY(60px);opacity:0}12%{opacity:1}to{transform:translateY(-120px);opacity:1}}
-.a-bub .pop{animation:popB 1.8s ease-out infinite;opacity:0}
-@keyframes popB{0%,55%{opacity:0;transform:scale(.4)}65%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.3)}}
-.a-bub .plus1{fill:#2440F0;font:800 14px var(--f-display);animation:plus 1.8s ease-out infinite;opacity:0}
+/* buổi 1: hộp quà bí mật */
+.a-gift{background:linear-gradient(#EAF6FF,#fff)}
+.a-gift .gift{animation:giftHop 2.4s ease-in-out infinite}
+.a-gift .lid{animation:lidPop 2.4s ease-in-out infinite}
+.a-gift .sp path{animation:twinkle 1.6s ease-in-out infinite}.a-gift .sp path:nth-child(2){animation-delay:.5s}.a-gift .sp path:nth-child(3){animation-delay:1s}
+@keyframes giftHop{0%,60%,100%{transform:translateY(0)}70%{transform:translateY(-6px)}80%{transform:translateY(0)}}
+@keyframes lidPop{0%,60%,100%{transform:translateY(0) rotate(0)}70%{transform:translateY(-10px) rotate(-8deg)}}
+@keyframes twinkle{50%{opacity:.2;transform:scale(.6)}}
+.mystery{aspect-ratio:16/9;border-radius:14px;background:radial-gradient(120% 100% at 50% 0%,#2440F0,#0B0F2E);display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.mystery span{font:800 84px var(--f-display);background:var(--grad,linear-gradient(90deg,#C8F31D,#3CF0C8,#5FC8FF));-webkit-background-clip:text;background-clip:text;color:transparent;animation:giftHop 2.4s ease-in-out infinite}
 /* buổi 3: game hứng sao */
 .a-stars{background:linear-gradient(#EAF6FF,#fff)}
 .a-stars .fs{fill:#F5C400;stroke:#E0A800;stroke-width:1.5;animation:fall2 2.4s linear infinite}
@@ -401,7 +403,7 @@ footer p{color:var(--muted);font-size:15px}
       <div>
         <span class="pill tip" tabindex="0" data-tip="Vì Octix không chắc lớp đầu tiên mở chưa :D" aria-label="Lớp Scratch thứ hai tại Phan Thiết. Vì Octix không chắc lớp đầu tiên mở chưa"><b>MỚI</b> Lớp Scratch thứ hai tại Phan Thiết</span>
         <h1>Con không chỉ chơi game.<span class="l2">Con tự làm ra</span><span class="l2"><span class="typed" id="typed">game</span></span></h1>
-        <p class="lead">Lớp lập trình Scratch cho bé 7–11 tuổi. Kéo thả từng khối lệnh, mỗi buổi bé tự làm xong một game chơi được. Ngay buổi học thử miễn phí, bé làm game <b>Chọc bong bóng</b> có tính điểm và mang về thách ba mẹ.</p>
+        <p class="lead">Lớp lập trình Scratch cho bé 7–11 tuổi. Kéo thả từng khối lệnh, mỗi buổi bé tự làm xong một game chơi được. Ngay buổi học thử miễn phí, bé tự làm xong một game và mang về thách ba mẹ.</p>
         <div class="ctas">
           <a class="btn btn-lime" href="#dang-ky">Học thử miễn phí
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -415,7 +417,7 @@ footer p{color:var(--muted);font-size:15px}
         </div>
       </div>
 
-      <div class="demo" id="demo" aria-label="Minh họa: các khối lệnh Scratch ghép lại thành trò chơi Chọc bong bóng">
+      <div class="demo" id="demo" aria-label="Minh họa: các khối lệnh Scratch ghép lại thành một trò chơi hứng sao">
         <div class="octi" id="octi" aria-hidden="true">
           <svg viewBox="30 8 166 178"><defs><linearGradient id="octR" gradientUnits="userSpaceOnUse" x1="44" y1="40" x2="170" y2="176"><stop offset="0" stop-color="#C8F31D"/><stop offset=".42" stop-color="#3CF0C8"/><stop offset=".78" stop-color="#5FC8FF"/><stop offset="1" stop-color="#2440F0"/></linearGradient><radialGradient id="octG"><stop offset="0" stop-color="#C8F31D" stop-opacity=".9"/><stop offset="1" stop-color="#C8F31D" stop-opacity="0"/></radialGradient></defs>
             <path d="M119.2 57.4 A56 56 0 1 0 154.1 95.5" fill="none" stroke="url(#octR)" stroke-width="22" stroke-linecap="round"/>
@@ -431,21 +433,20 @@ footer p{color:var(--muted);font-size:15px}
         <div class="demo-body">
           <div class="code" id="code">
             <div class="blk ev">khi bấm lá cờ xanh</div>
-            <div class="blk ctl">liên tục</div>
-            <div class="blk mo in1">đi tới x: <span class="v">ngẫu nhiên</span> y: <span class="v">đáy</span></div>
-            <div class="blk lo in1">hiện</div>
-            <div class="blk mo in1">lướt <span class="v">3</span> giây lên trên cùng</div>
-            <div class="blk ev">khi bấm vào bong bóng</div>
-            <div class="blk so">phát âm thanh <span class="v">pốp</span></div>
-            <div class="blk va">thay đổi <span class="v">Điểm</span> thêm <span class="v">1</span></div>
-            <div class="blk lo">ẩn</div>
+            <div class="blk va">đặt <span class="v">điểm</span> thành <span class="v">0</span></div>
+            <div class="blk ctl">lặp lại mãi</div>
+            <div class="blk mo in1">di chuyển <span class="v">6</span> bước</div>
+            <div class="blk mo in1">chạm cạnh thì bật lại</div>
+            <div class="blk ctl in1">nếu chạm <span class="v">ngôi sao</span> thì</div>
+            <div class="blk va in2">tăng <span class="v">điểm</span> thêm <span class="v">1</span></div>
+            <div class="blk lo in2">nói <span class="v">Yeah!</span></div>
           </div>
           <div class="stage" id="stage">
             <canvas id="cv" aria-hidden="true"></canvas>
             <span class="score">Điểm: <span id="pts">0</span></span>
           </div>
         </div>
-        <div class="demo-cap"><span>9 khối lệnh</span><span>Bé làm được ngay buổi học thử</span></div>
+        <div class="demo-cap"><span>8 khối lệnh</span><span>Bé làm được sau vài buổi</span></div>
       </div>
     </div>
   </div>
@@ -476,24 +477,24 @@ footer p{color:var(--muted);font-size:15px}
     <div class="wrap">
       <div class="sec-head rv">
         <span class="eyebrow">Buổi học thử miễn phí · 90 phút</span>
-        <h2>Ngay buổi đầu, bé tự làm xong một game có tính điểm</h2>
+        <h2>Ngay buổi đầu, bé tự làm xong một game</h2>
         <p>Bé không ngồi nghe giảng. Bé chơi thử trước, rồi tự ghép từng khối lệnh để làm ra chính trò chơi đó.</p>
       </div>
       <div class="trial-grid">
         <ol class="tl rv">
-          <li><span class="tm">10′</span><div><h3>Chơi thử game mẫu</h3><p>Bé chọc những quả bong bóng tươi cười bay lên trời. Ai được nhiều điểm nhất trong 30 giây?</p></div></li>
-          <li><span class="tm">10′</span><div><h3>Mở xem bên trong</h3><p>Thầy mở game ra cho cả lớp xem: game được ghép từ những khối lệnh nào, khối nào làm bong bóng bay, khối nào cộng điểm.</p></div></li>
+          <li><span class="tm">10′</span><div><h3>Chơi thử game mẫu</h3><p>Bé chơi một trò chơi vui. Lát nữa, chính bé sẽ làm ra trò chơi này.</p></div></li>
+          <li><span class="tm">10′</span><div><h3>Mở xem bên trong</h3><p>Thầy mở game ra cho cả lớp xem: game được ghép từ những khối lệnh nào, khối nào làm gì.</p></div></li>
           <li><span class="tm">35′</span><div><h3>Bé tự làm game</h3><p>Trên trang học của Octix, hướng dẫn từng bước ở bên trái, bé ghép lệnh ngay bên phải. Thầy ngồi cạnh gỡ khi bé vướng.</p></div></li>
-          <li><span class="tm">20′</span><div><h3>Thử thách và săn lỗi</h3><p>Bóng bay nhanh hơn, thêm nhiều bóng nhiều màu, bong bóng vàng được 5 điểm. Bé nào xong sớm thì làm thám tử tìm lỗi.</p></div></li>
+          <li><span class="tm">20′</span><div><h3>Thử thách và săn lỗi</h3><p>Bé nâng cấp game theo ý mình với 3 thử thách dễ, vừa, khó. Bé nào xong sớm thì làm thám tử tìm lỗi.</p></div></li>
           <li><span class="tm">10′</span><div><h3>Giải vô địch của lớp</h3><p>Mỗi bé chơi game của chính mình, thầy ghi điểm. Ba mẹ đến đón được mời vào chơi thử một lượt.</p></div></li>
         </ol>
         <div class="take rv">
-          <img src="img/choc-bong-bong.svg" alt="Game Chọc bong bóng: bong bóng nhiều màu có mặt cười bay trên bầu trời" width="480" height="360" loading="lazy">
+          <div class="mystery" aria-hidden="true"><span>?</span></div>
           <h3>Bé mang về</h3>
           <ul>
-            <li><b>Game Chọc bong bóng</b> do chính tay bé làm, có điểm và đồng hồ 30 giây.</li>
+            <li><b>Một game do chính tay bé làm</b>, chơi được ngay. Game gì thì để bé tự khám phá ở buổi học!</li>
             <li><b>Tài khoản học riêng</b> trên trang học Octix. Bài bé làm được tự lưu, về nhà mở ra chơi tiếp.</li>
-            <li><b>Huy hiệu đầu tiên</b> trong Hộ chiếu Octix: Vua bong bóng.</li>
+            <li><b>Huy hiệu đầu tiên</b> trong Hộ chiếu Octix.</li>
           </ul>
           <a class="btn btn-lime" href="#dang-ky">Đăng ký học thử</a>
         </div>
@@ -511,19 +512,16 @@ footer p{color:var(--muted);font-size:15px}
       </div>
       <div class="road">
         <article class="step rv">
-          <div class="art a-bub" aria-hidden="true"><svg viewBox="0 0 240 134" preserveAspectRatio="xMidYMid slice">
-            <path d="M0 116 Q60 100 120 112 T240 108 V134 H0Z" fill="#7ED957"/>
-            <g class="bb"><circle cx="60" cy="110" r="16" fill="#FF6FAE" fill-opacity=".35" stroke="#FF6FAE" stroke-width="3"/><circle cx="55" cy="108" r="1.8" fill="#0D1233"/><circle cx="65" cy="108" r="1.8" fill="#0D1233"/><path d="M56 114 Q60 118 64 114" stroke="#0D1233" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>
-            <g class="bb"><circle cx="128" cy="110" r="19" fill="#4FB8FF" fill-opacity=".35" stroke="#4FB8FF" stroke-width="3"/><circle cx="122" cy="108" r="2" fill="#0D1233"/><circle cx="134" cy="108" r="2" fill="#0D1233"/><path d="M123 115 Q128 120 133 115" stroke="#0D1233" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>
-            <g class="bb"><circle cx="190" cy="110" r="15" fill="#A87BFF" fill-opacity=".35" stroke="#A87BFF" stroke-width="3"/><circle cx="185" cy="108" r="1.8" fill="#0D1233"/><circle cx="195" cy="108" r="1.8" fill="#0D1233"/><path d="M186 114 Q190 118 194 114" stroke="#0D1233" stroke-width="1.6" fill="none" stroke-linecap="round"/></g>
-            <g class="pop"><path d="M150 30 l3 -10 M150 30 l10 -3 M150 30 l-3 10 M150 30 l-10 3 M150 30 l8 8 M150 30 l-8 -8 M150 30 l8 -8 M150 30 l-8 8" stroke="#FF9F43" stroke-width="3" stroke-linecap="round"/></g>
-            <text class="plus1" x="172" y="28">+1</text>
-            <rect x="12" y="6" width="58" height="20" rx="10" fill="#fff" stroke="#0D1233" stroke-opacity=".12"/><text x="41" y="20" text-anchor="middle" style="font:700 12px var(--f-display);fill:#0D1233">Điểm 3</text>
+          <div class="art a-gift" aria-hidden="true"><svg viewBox="0 0 240 134" preserveAspectRatio="xMidYMid slice">
+            <g class="sp"><path d="M70 30 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" fill="#C8F31D"/><path d="M176 40 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z" fill="#3CF0C8"/><path d="M160 92 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2z" fill="#5FC8FF"/></g>
+            <g class="gift"><rect x="92" y="62" width="56" height="44" rx="6" fill="#2440F0"/><rect x="114" y="62" width="12" height="44" fill="#C8F31D"/>
+            <g class="lid"><rect x="86" y="50" width="68" height="16" rx="5" fill="#3CF0C8"/><rect x="114" y="50" width="12" height="16" fill="#C8F31D"/><path d="M120 50 q-18 -18 -24 -6 q6 8 24 6 q18 2 24 -6 q-6 -12 -24 6z" fill="#C8F31D"/></g>
+            <text x="120" y="96" text-anchor="middle" style="font:800 22px var(--f-display);fill:#fff">?</text></g>
           </svg></div>
           <span class="n">Buổi 1 · Học thử miễn phí</span>
-          <h3>Chọc bong bóng</h3>
-          <p>Bong bóng bay lên từ chỗ ngẫu nhiên, chọc trúng thì vỡ và được cộng điểm, có đồng hồ 30 giây.</p>
-          <div class="tags"><span>Sự kiện</span><span>Ngẫu nhiên</span><span>Điểm</span></div>
+          <h3>Game đầu tiên của con</h3>
+          <p>Bé chơi thử, mở xem bên trong rồi tự làm lại trò chơi đó. Game gì thì giữ bí mật đến buổi học!</p>
+          <div class="tags"><span>Sự kiện</span><span>Âm thanh</span></div>
         </article>
         <article class="step rv">
           <div class="art a-card" aria-hidden="true"><svg viewBox="0 0 240 134" preserveAspectRatio="xMidYMid slice">
@@ -631,7 +629,7 @@ footer p{color:var(--muted);font-size:15px}
         <details><summary>Học ở đâu, vào lúc nào?</summary><p>Lớp học tại Phan Thiết, mỗi tuần 2 buổi, mỗi buổi 90 phút. Octix gửi địa chỉ và giờ học cụ thể khi xác nhận lịch với ba mẹ.</p></details>
         <details><summary>Bé có cần mang laptop không?</summary><p>Không bắt buộc. Bé chưa có laptop thì Octix cung cấp máy trong giờ học. Nếu nhà có laptop, bé mang theo sẽ quen máy và tiện luyện tiếp ở nhà.</p></details>
         <details><summary>Học phí bao nhiêu?</summary><p>Buổi học đầu tiên miễn phí để bé học thử. Nếu bé thích và muốn học tiếp, Octix sẽ thông báo học phí chi tiết cho ba mẹ.</p></details>
-        <details><summary>Buổi học thử có gì?</summary><p>90 phút, bé tự làm game Chọc bong bóng có tính điểm và đồng hồ 30 giây. Bé được tạo tài khoản học riêng để về nhà mở lại game. Cuối buổi ba mẹ được mời vào chơi thử game của con.</p></details>
+        <details><summary>Buổi học thử có gì?</summary><p>90 phút, bé chơi thử một trò chơi rồi tự làm ra chính trò chơi đó. Bé được tạo tài khoản học riêng để về nhà mở lại game. Cuối buổi ba mẹ được mời vào chơi thử game của con.</p></details>
         <details><summary>Khoá học kéo dài bao lâu?</summary><p>24 buổi trong khoảng 12 tuần. Mỗi buổi bé làm xong một game. Buổi cuối là Ngày trình diễn: bé giới thiệu game do chính mình nghĩ ra cho ba mẹ chơi thử.</p></details>
         <details><summary>Học xong khoá Scratch thì học tiếp gì?</summary><p>Bé có thể học tiếp Scratch nâng cao, sau đó chuyển sang Robotics hoặc Python khi các lớp này mở.</p></details>
       </div>
@@ -646,7 +644,7 @@ footer p{color:var(--muted);font-size:15px}
         <div>
           <span class="eyebrow" style="color:var(--lime)">Buổi đầu học thử miễn phí</span>
           <h2 style="margin-top:14px">Giữ chỗ cho bé ở lớp đầu tiên</h2>
-          <p class="lead">Buổi học thử 90 phút, bé tự làm game Chọc bong bóng và mang về thách ba mẹ. Điền thông tin dưới đây, Octix gọi lại qua Zalo để chọn buổi phù hợp với lịch của bé.</p>
+          <p class="lead">Buổi học thử 90 phút, bé tự làm xong một game và mang về thách ba mẹ. Điền thông tin dưới đây, Octix gọi lại qua Zalo để chọn buổi phù hợp với lịch của bé.</p>
         </div>
         <form id="form" novalidate>
           <div id="form-fields" style="display:flex;flex-direction:column;gap:16px">
@@ -761,59 +759,57 @@ const LEADS_API = "https://fseereakzmfldauphfrd.supabase.co/rest/v1/leads", LEAD
   function size(){ const r=cv.getBoundingClientRect(); W=r.width; H=r.height; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
   size(); addEventListener('resize', size);
 
-  const P = {x:60,y:120,tx:60,ty:120,down:0};
-  const COLS=['#FF6FAE','#4FB8FF','#A87BFF','#2ED9A4','#FF9F43'];
+  const P = {x:60,y:80,vx:2.6,vy:1.9,r:22};
   let stars=[], score=0, running=false, bursts=[], say=0, t=0;
-  function spawn(){ stars.push({x:30+Math.random()*(W-60), y:H+30, v:.7+Math.random()*.7, c:COLS[Math.floor(Math.random()*COLS.length)], r:15+Math.random()*6, a:Math.random()*6}); }
-  function bubble(b){
-    const x=b.x+Math.sin(b.a)*4, y=b.y, r=b.r;
-    ctx.globalAlpha=.32; ctx.fillStyle=b.c; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
-    ctx.globalAlpha=1; ctx.lineWidth=2.5; ctx.strokeStyle=b.c; ctx.stroke();
-    ctx.strokeStyle='#fff'; ctx.lineWidth=2.5; ctx.lineCap='round'; ctx.beginPath(); ctx.arc(x,y,r*.68,3.5,4.3); ctx.stroke();
-    ctx.fillStyle='#0D1233'; ctx.beginPath(); ctx.arc(x-r*.24,y-1,1.9,0,Math.PI*2); ctx.arc(x+r*.24,y-1,1.9,0,Math.PI*2); ctx.fill();
-    ctx.strokeStyle='#0D1233'; ctx.lineWidth=1.6; ctx.beginPath(); ctx.arc(x,y+r*.18,r*.2,.3,Math.PI-.3); ctx.stroke();
-  }
-  function drawCursor(){
-    ctx.save(); ctx.translate(P.x,P.y); if(P.down>0) ctx.scale(.85,.85);
-    ctx.fillStyle='#fff'; ctx.strokeStyle='#0D1233'; ctx.lineWidth=1.6; ctx.lineJoin='round';
-    ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(0,17); ctx.lineTo(4.5,13); ctx.lineTo(8,20); ctx.lineTo(10.5,19); ctx.lineTo(7,12); ctx.lineTo(12.5,12); ctx.closePath(); ctx.fill(); ctx.stroke();
-    ctx.restore();
+  function spawn(){ stars.push({x:30+Math.random()*(W-60), y:40+Math.random()*(H-80), a:Math.random()*6, s:0}); }
+  function starPath(x,y,R){ ctx.beginPath(); for(let i=0;i<8;i++){ const ang=i*Math.PI/4-Math.PI/2, rr=i%2?R*.32:R; ctx.lineTo(x+Math.cos(ang)*rr, y+Math.sin(ang)*rr);} ctx.closePath(); }
+  function drawSprite(){
+    const g = ctx.createLinearGradient(P.x-P.r,P.y-P.r,P.x+P.r,P.y+P.r);
+    g.addColorStop(0,'#C8F31D'); g.addColorStop(.45,'#3CF0C8'); g.addColorStop(.8,'#5FC8FF'); g.addColorStop(1,'#2440F0');
+    ctx.lineCap='round'; ctx.lineWidth=7; ctx.strokeStyle=g;
+    ctx.beginPath(); ctx.arc(P.x,P.y,P.r-4,-1.22,-0.26,true); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(P.x+(P.r-4)*Math.cos(-0.26),P.y+(P.r-4)*Math.sin(-0.26)); ctx.quadraticCurveTo(P.x+P.r*0.9,P.y-P.r*1.0,P.x+P.r*1.15,P.y-P.r*1.25); ctx.stroke();
+    ctx.fillStyle='#C8F31D'; ctx.strokeStyle='#9DBF10'; ctx.lineWidth=1; starPath(P.x+P.r*1.18,P.y-P.r*1.3,7); ctx.fill();
+    ctx.fillStyle='#0D1233'; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(P.x-7,P.y-4,4,8,2) : ctx.rect(P.x-7,P.y-4,4,8); ctx.roundRect ? ctx.roundRect(P.x+3,P.y-4,4,8,2) : ctx.rect(P.x+3,P.y-4,4,8); ctx.fill();
     if(say>0){
-      ctx.globalAlpha=Math.min(1,say/20); ctx.fillStyle='#C8F31D'; ctx.font='800 14px "Lexend",system-ui,sans-serif'; ctx.fillText('+1', P.x+12, P.y-8-(60-say)*.3); ctx.globalAlpha=1;
+      ctx.globalAlpha=Math.min(1,say/20);
+      ctx.fillStyle='#fff'; const bx=P.x+16, by=P.y-P.r-34;
+      ctx.beginPath(); ctx.roundRect ? ctx.roundRect(bx,by,58,24,10) : ctx.rect(bx,by,58,24); ctx.fill();
+      ctx.fillStyle='#0D1233'; ctx.font='600 12px "Be Vietnam Pro",system-ui,sans-serif'; ctx.fillText('Yeah!', bx+12, by+16);
+      ctx.globalAlpha=1;
     }
   }
   function frame(){
     t++;
     ctx.clearRect(0,0,W,H);
-    stars.forEach(b=>{ if(running){ b.y-=b.v; b.a+=.05; } bubble(b); });
+    // stars
+    stars.forEach(s=>{ s.a+=.04; s.s=Math.min(1,s.s+.06); ctx.save(); ctx.translate(s.x,s.y); ctx.rotate(Math.sin(s.a)*.25); ctx.fillStyle='#C8F31D'; ctx.strokeStyle='#9DBF10'; ctx.lineWidth=1.5; starPath(0,0,11*s.s); ctx.fill(); ctx.stroke(); ctx.restore(); });
     if(running){
-      stars = stars.filter(b=>b.y>-30);
-      const target = stars.filter(b=>b.y<H-30).sort((a,b)=>a.y-b.y)[0];
-      if(target){ P.tx=target.x; P.ty=target.y; }
-      P.x+=(P.tx-P.x)*.08; P.y+=(P.ty-P.y)*.08;
-      if(P.down>0) P.down--;
-      stars = stars.filter(b=>{ if(Math.hypot(b.x-P.x,b.y-P.y)<b.r*.7){ score++; pts.textContent=score; say=60; P.down=8; for(let i=0;i<12;i++) bursts.push({x:b.x,y:b.y,vx:(Math.random()-.5)*5,vy:(Math.random()-.5)*5,l:28,c:b.c}); return false;} return true; });
-      if(stars.length<4 && t%40===0) spawn();
+      P.x+=P.vx; P.y+=P.vy;
+      if(P.x<P.r||P.x>W-P.r){P.vx*=-1; P.x=Math.max(P.r,Math.min(W-P.r,P.x));}
+      if(P.y<P.r+28||P.y>H-P.r){P.vy*=-1; P.y=Math.max(P.r+28,Math.min(H-P.r,P.y));}
+      stars = stars.filter(s=>{ if(Math.hypot(s.x-P.x,s.y-P.y)<P.r+10){ score++; pts.textContent=score; say=60; for(let i=0;i<10;i++) bursts.push({x:s.x,y:s.y,vx:(Math.random()-.5)*5,vy:(Math.random()-.5)*5,l:30}); return false;} return true; });
+      if(stars.length<3 && t%30===0) spawn();
     }
-    bursts.forEach(b=>{ b.x+=b.vx; b.y+=b.vy; b.l--; ctx.globalAlpha=b.l/28; ctx.fillStyle=b.c; ctx.beginPath(); ctx.arc(b.x,b.y,2.6,0,Math.PI*2); ctx.fill(); });
+    bursts.forEach(b=>{ b.x+=b.vx; b.y+=b.vy; b.l--; ctx.globalAlpha=b.l/30; ctx.fillStyle=b.l%2?'#3CF0C8':'#C8F31D'; ctx.beginPath(); ctx.arc(b.x,b.y,2.6,0,Math.PI*2); ctx.fill(); });
     ctx.globalAlpha=1; bursts = bursts.filter(b=>b.l>0);
     if(say>0) say--;
-    if(running) drawCursor();
+    drawSprite();
     requestAnimationFrame(frame);
   }
 
   function cycle(){
-    running=false; score=0; pts.textContent='0'; stars=[]; P.x=W/2; P.y=H-20;
+    running=false; score=0; pts.textContent='0'; stars=[]; P.x=60; P.y=90;
     demo.classList.remove('running'); flagTxt.textContent='Đang ghép lệnh…';
     octi.className='octi think'; obub.textContent='Ghép từng khối nhé…'; obub.classList.remove('hide');
     blks.forEach(b=>b.classList.remove('on'));
     blks.forEach((b,i)=> setTimeout(()=>b.classList.add('on'), 350+i*380));
-    setTimeout(()=>{ running=true; demo.classList.add('running'); flagTxt.textContent='Đang chạy'; for(let i=0;i<3;i++){ spawn(); stars[stars.length-1].y=H-20-i*50; }
+    setTimeout(()=>{ running=true; demo.classList.add('running'); flagTxt.textContent='Đang chạy'; for(let i=0;i<3;i++) spawn();
       octi.className='octi happy'; obub.textContent='Chạy được rồi!';
       setTimeout(()=>{ octi.className='octi'; obub.classList.add('hide'); },2600); }, 350+blks.length*380+300);
     setTimeout(cycle, 350+blks.length*380+300+11000);
   }
-  if(reduce){ blks.forEach(b=>b.classList.add('on')); for(let i=0;i<3;i++) spawn(); stars.forEach((b,i)=>b.y=H*.3+i*40); flagTxt.textContent='Game Chọc bong bóng'; ctx.clearRect(0,0,W,H); requestAnimationFrame(()=>{ frame(); }); }
+  if(reduce){ blks.forEach(b=>b.classList.add('on')); for(let i=0;i<3;i++) spawn(); flagTxt.textContent='Game hứng sao'; ctx.clearRect(0,0,W,H); stars.forEach(s=>s.s=1); requestAnimationFrame(()=>{ frame(); }); }
   else { requestAnimationFrame(frame); cycle(); }
 
   /* ===== form ===== */
