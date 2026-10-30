@@ -375,6 +375,16 @@ footer p{color:var(--muted);font-size:15px}
   .mnav a:last-child{border-bottom:0}
   .mnav a[aria-current]{color:var(--lime)}
 }
+
+/* ---------- NÚT CHAT ZALO ---------- */
+.zalo-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:10px;padding:8px 18px 8px 8px;border-radius:999px;background:#0068FF;color:#fff;text-decoration:none;font-family:"Lexend","Be Vietnam Pro",system-ui,sans-serif;font-weight:600;font-size:15px;box-shadow:0 10px 28px -6px rgba(0,104,255,.55);transition:transform .2s ease,box-shadow .2s ease}
+.zalo-fab:hover{transform:translateY(-2px);box-shadow:0 14px 32px -6px rgba(0,104,255,.7)}
+.zalo-fab .zi{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;position:relative}
+.zalo-fab .zi::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(255,255,255,.7);animation:zpulse 2s ease-out infinite}
+.zalo-fab .zi b{font-family:Arial,sans-serif;font-weight:800;font-size:12px;color:#0068FF;letter-spacing:-.02em}
+@keyframes zpulse{from{transform:scale(1);opacity:1}to{transform:scale(1.35);opacity:0}}
+@media (max-width:560px){.zalo-fab{padding:8px}.zalo-fab .zt{display:none}}
+@media (prefers-reduced-motion:reduce){.zalo-fab .zi::after{animation:none;opacity:0}}
 </style>
 </head>
 <body>
@@ -704,6 +714,7 @@ footer p{color:var(--muted);font-size:15px}
     <div class="f-meta">
       <p>Trung tâm lập trình và AI · Phan Thiết</p>
       <p><a href="mailto:lienhe@octix.vn" style="color:inherit;text-decoration:underline;text-underline-offset:3px">lienhe@octix.vn</a></p>
+      <p>Zalo: <a href="https://zalo.me/0862326416" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">0862 326 416</a></p>
       <p>© 2026 Octix</p>
     </div>
   </div>
@@ -854,5 +865,6 @@ const LEADS_API = "https://fseereakzmfldauphfrd.supabase.co/rest/v1/leads", LEAD
 })();
 </script>
 
+<a class="zalo-fab" href="https://zalo.me/0862326416" target="_blank" rel="noopener" aria-label="Chat Zalo với Octix (0862 326 416)"><span class="zi" aria-hidden="true"><b>Zalo</b></span><span class="zt">Chat Zalo</span></a>
 </body>
 </html>
