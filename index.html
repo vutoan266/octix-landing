@@ -1086,6 +1086,19 @@ footer p{color:var(--muted);font-size:15px}
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/lienhe@octix.vn";
 const LEADS_API = "https://fseereakzmfldauphfrd.supabase.co/rest/v1/leads", LEADS_KEY = "sb_publishable_0lAUvaignHcL_F2jBNW7Tg_1AqcH-uL";
 
+/* ===== Nguồn quảng cáo (UTM): đọc khi khách vào, giữ trong phiên, gửi kèm form =====
+   Ví dụ QR decal xe: https://octix.vn/?utm_source=xe&utm_medium=qr ; fanpage: utm_source=facebook ; TikTok: utm_source=tiktok */
+const UTM = (function(){
+  const KEY='octix-utm', clean=v=>(v||'').toString().trim().toLowerCase().replace(/[^a-z0-9._-]/g,'').slice(0,60)||null;
+  let saved=null; try{ saved=JSON.parse(sessionStorage.getItem(KEY)||'null'); }catch(_){}
+  try{
+    const q=new URLSearchParams(location.search), src=clean(q.get('utm_source'));
+    if(src){ saved={ utm_source:src, utm_medium:clean(q.get('utm_medium')), utm_campaign:clean(q.get('utm_campaign')) };
+      try{ sessionStorage.setItem(KEY, JSON.stringify(saved)); }catch(_){} }
+  }catch(_){}
+  return saved||{};
+})();
+
 (function(){
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -1200,11 +1213,16 @@ const LEADS_API = "https://fseereakzmfldauphfrd.supabase.co/rest/v1/leads", LEAD
       const btn=form.querySelector('button[type=submit]'); if(btn){btn.disabled=true;}
       const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Laptop':data.laptop||'—', 'Ghi chú':data.note||'—',
         _subject:'Đăng ký học thử: '+data.parent+' · '+data.phone, _template:'table', _captcha:'false' };
+      if(UTM.utm_source) payload['Nguồn quảng cáo']=[UTM.utm_source,UTM.utm_medium,UTM.utm_campaign].filter(Boolean).join(' · ');
       const lead={ source:'web', parent_name:String(data.parent).trim().slice(0,120), phone:data.phone.slice(0,20), kid_name:(data.kid||'').toString().trim().slice(0,120)||null,
         kid_age:String(data.age).slice(0,60), preferred_times:data.time.slice(0,200)||null, has_laptop:(data.laptop||'').toString().slice(0,60)||null, note:(data.note||'').toString().trim().slice(0,2000)||null };
+      const postLead=b=>fetch(LEADS_API,{method:'POST',headers:{'Content-Type':'application/json','apikey':LEADS_KEY,'Prefer':'return=minimal'},body:JSON.stringify(b)});
+      /* gửi kèm UTM; nếu bảng chưa có cột UTM thì gửi lại không có UTM để không mất đăng ký */
+      const saveLead=async()=>{ if(!UTM.utm_source) return postLead(lead);
+        const r=await postLead(Object.assign({},lead,UTM)); return r.ok?r:postLead(lead); };
       try{ const rs=await Promise.allSettled([
           fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}),
-          fetch(LEADS_API,{method:'POST',headers:{'Content-Type':'application/json','apikey':LEADS_KEY,'Prefer':'return=minimal'},body:JSON.stringify(lead)}) ]);
+          saveLead() ]);
         if(btn){btn.disabled=false;} if(!rs.some(x=>x.status==='fulfilled'&&x.value.ok)) throw new Error('send'); }
       catch(_){ if(btn){btn.disabled=false;} err.textContent='Chưa gửi được. Ba mẹ kiểm tra mạng rồi bấm gửi lại nhé.'; err.hidden=false; return; }
     } else {
