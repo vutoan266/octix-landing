@@ -690,6 +690,10 @@ footer p{color:var(--muted);font-size:15px}
   .chaps{gap:28px}.chap{grid-area:auto;opacity:1;transform:none}
   .sk *{stroke-dashoffset:0}.sk .note{opacity:1}.bk g{opacity:1;transform:none}.gm{opacity:0}
 }
+.btn.loading{cursor:progress;opacity:.85}
+.btn .spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:btnspin .7s linear infinite;flex:none}
+@keyframes btnspin{to{transform:rotate(360deg)}}
+#done-title:focus{outline:none}
 </style>
 </head>
 <body>
@@ -1210,26 +1214,37 @@ const UTM = (function(){
     err.hidden=true;
     const data = { parent:fd.get('parent'), phone, kid:fd.get('kid'), age:fd.get('age'), time:fd.getAll('time').join(', '), laptop:fd.get('laptop')||'', note:fd.get('note'), at:new Date().toISOString() };
     if(FORM_ENDPOINT){
-      const btn=form.querySelector('button[type=submit]'); if(btn){btn.disabled=true;}
+      const btn=form.querySelector('button[type=submit]');
+      const setLoading=on=>{ if(!btn) return; btn.disabled=on; btn.classList.toggle('loading',on); btn.setAttribute('aria-busy',on?'true':'false');
+        btn.innerHTML=on?'<span class="spin" aria-hidden="true"></span>Đang gửi…':'Gửi đăng ký'; };
+      setLoading(true);
       const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Laptop':data.laptop||'—', 'Ghi chú':data.note||'—',
         _subject:'Đăng ký học thử: '+data.parent+' · '+data.phone, _template:'table', _captcha:'false' };
       if(UTM.utm_source) payload['Nguồn quảng cáo']=[UTM.utm_source,UTM.utm_medium,UTM.utm_campaign].filter(Boolean).join(' · ');
       const lead={ source:'web', parent_name:String(data.parent).trim().slice(0,120), phone:data.phone.slice(0,20), kid_name:(data.kid||'').toString().trim().slice(0,120)||null,
         kid_age:String(data.age).slice(0,60), preferred_times:data.time.slice(0,200)||null, has_laptop:(data.laptop||'').toString().slice(0,60)||null, note:(data.note||'').toString().trim().slice(0,2000)||null };
-      const postLead=b=>fetch(LEADS_API,{method:'POST',headers:{'Content-Type':'application/json','apikey':LEADS_KEY,'Prefer':'return=minimal'},body:JSON.stringify(b)});
+      /* mỗi yêu cầu tối đa 15 giây, để nút không treo mãi */
+      const fetchT=(url,opt)=>{ const c=new AbortController(); const t=setTimeout(()=>c.abort(),15000);
+        return fetch(url,Object.assign({keepalive:true,signal:c.signal},opt)).finally(()=>clearTimeout(t)); };
+      const postLead=b=>fetchT(LEADS_API,{method:'POST',headers:{'Content-Type':'application/json','apikey':LEADS_KEY,'Prefer':'return=minimal'},body:JSON.stringify(b)});
       /* gửi kèm UTM; nếu bảng chưa có cột UTM thì gửi lại không có UTM để không mất đăng ký */
       const saveLead=async()=>{ if(!UTM.utm_source) return postLead(lead);
         const r=await postLead(Object.assign({},lead,UTM)); return r.ok?r:postLead(lead); };
-      try{ const rs=await Promise.allSettled([
-          fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)}),
-          saveLead() ]);
-        if(btn){btn.disabled=false;} if(!rs.some(x=>x.status==='fulfilled'&&x.value.ok)) throw new Error('send'); }
-      catch(_){ if(btn){btn.disabled=false;} err.textContent='Chưa gửi được. Ba mẹ kiểm tra mạng rồi bấm gửi lại nhé.'; err.hidden=false; return; }
+      const okOrThrow=p=>p.then(r=>{ if(!r.ok) throw new Error('http '+r.status); return r; });
+      /* thành công ngay khi một trong hai nơi nhận được (email hoặc bảng leads), không chờ nơi chậm hơn */
+      const anyOk=ps=>new Promise((res,rej)=>{ let n=ps.length; ps.forEach(p=>p.then(res,()=>{ if(--n===0) rej(new Error('send')); })); });
+      try{ await anyOk([
+          okOrThrow(fetchT(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})),
+          okOrThrow(saveLead()) ]);
+        setLoading(false); }
+      catch(_){ setLoading(false); err.textContent='Chưa gửi được. Ba mẹ kiểm tra mạng rồi bấm gửi lại nhé, hoặc nhắn Zalo 0862 326 416.'; err.hidden=false; return; }
     } else {
       document.getElementById('done-title').textContent='Đây là bản xem trước';
       document.getElementById('done-text').textContent='Form chưa nối với nơi lưu đăng ký nên thông tin này chưa được gửi đi.';
     }
     fields.hidden=true; done.hidden=false;
+    done.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    const dt=document.getElementById('done-title'); dt.setAttribute('tabindex','-1'); dt.focus({preventScroll:true});
   });
   document.getElementById('again').addEventListener('click', ()=>{ form.reset(); done.hidden=true; fields.hidden=false; });
 
