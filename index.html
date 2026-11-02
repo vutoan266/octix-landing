@@ -4,15 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Octix (octix.vn) – lớp lập trình Scratch cho bé 7–11 tuổi tại Phan Thiết. Học thử miễn phí 90 phút, lớp nhỏ 6–10 bé, mỗi buổi bé làm một game. Có thêm khoá AI công sở cho người đi làm.">
-<link rel="icon" href="favicon.ico">
 <title>Octix Phan Thiết – Học lập trình Scratch cho bé 7–11 tuổi</title>
 <link rel="canonical" href="https://octix.vn/">
 <meta name="google-site-verification" content="rpXSNNeLSzbsLYdtNUiYcs31ihdwIJwoJ_nXtOvn4lw">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#0B0F2E">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+<link rel="icon" type="image/png" sizes="144x144" href="/favicon-144.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Octix">
 <meta property="og:locale" content="vi_VN">
@@ -695,6 +697,19 @@ footer p{color:var(--muted);font-size:15px}
 @keyframes btnspin{to{transform:rotate(360deg)}}
 #done-title:focus{outline:none}
 </style>
+<!-- PostHog: đếm lượt truy cập, nguồn (UTM), lượt bấm. Không gửi tên hay số điện thoại; ô nhập bị che trong bản ghi phiên. -->
+<script>
+window.OCTIX_PH={ key:'', host:'https://us.i.posthog.com' };
+!function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled getFeatureFlag onFeatureFlags identify setPersonProperties group alias set_config startSessionRecording stopSessionRecording getSessionReplayUrl get_distinct_id get_session_id".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+if(OCTIX_PH.key && !/^(localhost|127\.|0\.0\.0\.0)/.test(location.hostname)){
+  posthog.init(OCTIX_PH.key,{ api_host:OCTIX_PH.host, defaults:'2025-05-24', person_profiles:'identified_only',
+    session_recording:{ maskAllInputs:true } });
+}
+/* sự kiện riêng: bấm Zalo, bấm gọi */
+document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href]'); if(!a||!window.posthog||!posthog.capture) return;
+  var h=a.getAttribute('href')||''; if(h.indexOf('zalo.me')>-1) posthog.capture('bam_zalo',{vi_tri:a.className||'link'});
+  else if(h.indexOf('tel:')===0) posthog.capture('bam_goi',{vi_tri:a.className||'link'}); },true);
+</script>
 </head>
 <body>
 
@@ -1242,6 +1257,7 @@ const UTM = (function(){
       document.getElementById('done-title').textContent='Đây là bản xem trước';
       document.getElementById('done-text').textContent='Form chưa nối với nơi lưu đăng ký nên thông tin này chưa được gửi đi.';
     }
+    if(FORM_ENDPOINT && window.posthog && posthog.capture) posthog.capture('dang_ky_hoc_thu',{tuoi:String(data.age),co_laptop:data.laptop||''});
     fields.hidden=true; done.hidden=false;
     done.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
     const dt=document.getElementById('done-title'); dt.setAttribute('tabindex','-1'); dt.focus({preventScroll:true});
