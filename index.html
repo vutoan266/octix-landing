@@ -1058,13 +1058,13 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
           <div class="ev" id="ev" hidden>
             <span class="ev-tag">Miễn phí · tối đa <span data-ev="cap">10</span> bé</span>
             <h3><span data-ev="name">Lớp học lập trình miễn phí</span> <span data-ev="when">sáng thứ Bảy 14/11</span></h3>
-            <p><span data-ev="time">8:30–10:00</span> · <span data-ev="place">Quán cà phê Demeter Beans, Phan Thiết</span> · dành cho bé 7–11 tuổi</p>
+            <p><span data-ev="time">8:30–10:00</span> · <span data-ev="place">Không gian làm việc chung kiểu coffee shop ở Phan Thiết · địa chỉ báo khi chốt lịch</span> · dành cho bé 7–11 tuổi</p>
             <div class="seats" id="ev-seats" hidden><div class="seat-row" id="ev-row"></div><small id="ev-left"></small></div>
           </div>
         </div>
         <form id="form" novalidate>
           <div id="form-fields" style="display:flex;flex-direction:column;gap:16px">
-            <label class="ev-pick" for="f-ev" id="ev-pick" hidden><input type="checkbox" id="f-ev" name="ev" checked><span><b id="ev-pick-t">Đăng ký lớp miễn phí sáng thứ Bảy 14/11</b><small><span data-ev="time">8:30–10:00</span> · <span data-ev="place">Quán cà phê Demeter Beans, Phan Thiết</span></small></span></label>
+            <label class="ev-pick" for="f-ev" id="ev-pick" hidden><input type="checkbox" id="f-ev" name="ev" checked><span><b id="ev-pick-t">Đăng ký lớp miễn phí sáng thứ Bảy 14/11</b><small><span data-ev="time">8:30–10:00</span> · <span data-ev="place">Không gian làm việc chung kiểu coffee shop ở Phan Thiết · địa chỉ báo khi chốt lịch</span></small></span></label>
             <div class="row2">
               <label for="f-parent">Tên ba mẹ<input id="f-parent" name="parent" autocomplete="name" placeholder="Nguyễn Văn A" required></label>
               <label for="f-phone">Số điện thoại / Zalo<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="09xx xxx xxx" required></label>
@@ -1136,7 +1136,7 @@ const LEADS_API = "https://fseereakzmfldauphfrd.supabase.co/rest/v1/leads", LEAD
    Ví dụ QR decal xe: https://octix.vn/?utm_source=xe&utm_medium=qr ; fanpage: utm_source=facebook ; TikTok: utm_source=tiktok */
 /* ===== Lớp miễn phí (sự kiện): sửa ở đây. Hết giờ "until" thì tự ẩn khỏi trang ===== */
 const EVENT = { id:'lop-14-11', name:'Lớp học lập trình miễn phí', when:'sáng thứ Bảy 14/11', short:'lớp 14/11',
-  time:'8:30–10:00', place:'Quán cà phê Demeter Beans, Phan Thiết', cap:10, until:'2026-11-14T10:00:00+07:00' };
+  time:'8:30–10:00', place:'Không gian làm việc chung kiểu coffee shop ở Phan Thiết · địa chỉ báo khi chốt lịch', cap:10, until:'2026-11-14T10:00:00+07:00' };
 const SEATS_API = "https://fseereakzmfldauphfrd.supabase.co/rest/v1/rpc/event_seats_taken";
 
 const UTM = (function(){
@@ -1338,7 +1338,7 @@ const UTM = (function(){
       document.getElementById('done-title').textContent = isWait ? 'Bé đã vào danh sách chờ' : 'Octix đã giữ chỗ cho bé';
       document.getElementById('done-text').textContent = isWait
         ? 'Lớp ' + EVENT.when + ' đã đủ chỗ. Có bạn báo nghỉ là Octix nhắn Zalo cho ba mẹ ngay.'
-        : 'Hẹn bé ' + EVENT.when + ', ' + EVENT.time + ' tại ' + EVENT.place + '. Octix sẽ nhắn Zalo để xác nhận và gửi địa chỉ chi tiết.';
+        : 'Hẹn bé ' + EVENT.when + ', ' + EVENT.time + '. Octix sẽ nhắn Zalo để xác nhận và gửi địa chỉ khi chốt lịch.';
       if(EV.taken !== null){ EV.taken++; evRender(); }
     } else {
       document.getElementById('done-title').textContent = 'Octix đã nhận đăng ký';
