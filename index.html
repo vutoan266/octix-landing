@@ -780,7 +780,7 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
         <div class="hero-ev" id="hero-ev" hidden>
           <span class="ev-tag">Miễn phí · chỉ <span data-ev="cap">10</span> bé</span>
           <b>Sáng thứ Bảy 14/11: bé 7–11 tuổi tự làm game đầu tiên</b>
-          <span class="ev-meta"><span data-ev="time">8:30–10:00</span> · <span data-ev="place">Tại coffee shop ở Phan Thiết</span></span>
+          <span class="ev-meta"><span data-ev="time">8:30–10:00</span> · <span data-ev="place">Một coffee shop ở Phan Thiết</span></span>
         </div>
         <div class="ctas">
           <a class="btn btn-lime" href="#dang-ky" id="hero-cta">Học thử miễn phí
@@ -1068,13 +1068,13 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
           <div class="ev" id="ev" hidden>
             <span class="ev-tag">Miễn phí · tối đa <span data-ev="cap">10</span> bé</span>
             <h3><span data-ev="name">Lớp học lập trình miễn phí</span> <span data-ev="when">sáng thứ Bảy 14/11</span></h3>
-            <p><span data-ev="time">8:30–10:00</span> · <span class="tip ev-place" tabindex="0" data-tip="Địa chỉ cụ thể Octix sẽ thông báo khi chốt lịch." aria-label="Tại coffee shop ở Phan Thiết. Địa chỉ cụ thể Octix sẽ thông báo khi chốt lịch."><span data-ev="place">Tại coffee shop ở Phan Thiết</span> <i class="qi" aria-hidden="true">?</i></span> · dành cho bé 7–11 tuổi</p>
+            <p><span data-ev="time">8:30–10:00</span> · <span class="tip ev-place" tabindex="0" data-tip="Địa chỉ cụ thể Octix sẽ tiết lộ sau." aria-label="Một coffee shop ở Phan Thiết. Địa chỉ cụ thể Octix sẽ tiết lộ sau."><span data-ev="place">Một coffee shop ở Phan Thiết</span> <i class="qi" aria-hidden="true">?</i></span> · dành cho bé 7–11 tuổi</p>
           </div>
           <a class="teacher" href="nguoi-sang-lap/"><img src="nguoi-sang-lap/vu-toan.jpg" alt="Thầy Vũ Toàn" width="56" height="56" loading="lazy"><span><b>Thầy Vũ Toàn trực tiếp dạy lớp</b>Kỹ sư phần mềm 10 năm, cựu học sinh chuyên Tin Trần Hưng Đạo Bình Thuận. <u>Xem thêm</u></span></a>
         </div>
         <form id="form" novalidate>
           <div id="form-fields" style="display:flex;flex-direction:column;gap:16px">
-            <label class="ev-pick" for="f-ev" id="ev-pick" hidden><input type="checkbox" id="f-ev" name="ev" checked><span><b id="ev-pick-t">Đăng ký lớp miễn phí sáng thứ Bảy 14/11</b><small><span data-ev="time">8:30–10:00</span> · <span data-ev="place">Tại coffee shop ở Phan Thiết</span></small></span></label>
+            <label class="ev-pick" for="f-ev" id="ev-pick" hidden><input type="checkbox" id="f-ev" name="ev" checked><span><b id="ev-pick-t">Đăng ký lớp miễn phí sáng thứ Bảy 14/11</b><small><span data-ev="time">8:30–10:00</span> · <span data-ev="place">Một coffee shop ở Phan Thiết</span></small></span></label>
             <div class="row2">
               <label for="f-parent">Tên ba mẹ<input id="f-parent" name="parent" autocomplete="name" placeholder="Nguyễn Văn A" required></label>
               <label for="f-phone">Số điện thoại / Zalo<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="09xx xxx xxx" required></label>
@@ -1163,7 +1163,7 @@ const LEADS_API = "https://fseereakzmfldauphfrd.supabase.co/rest/v1/leads", LEAD
    Ví dụ QR decal xe: https://octix.vn/?utm_source=xe&utm_medium=qr ; fanpage: utm_source=facebook ; TikTok: utm_source=tiktok */
 /* ===== Lớp miễn phí (sự kiện): sửa ở đây. Hết giờ "until" thì tự ẩn khỏi trang ===== */
 const EVENT = { id:'lop-14-11', name:'Lớp học lập trình miễn phí', when:'sáng thứ Bảy 14/11', short:'lớp 14/11',
-  time:'8:30–10:00', place:'Tại coffee shop ở Phan Thiết', cap:10, until:'2026-11-14T10:00:00+07:00' };
+  time:'8:30–10:00', place:'Một coffee shop ở Phan Thiết', cap:10, until:'2026-11-14T10:00:00+07:00' };
 const SEATS_API = "https://fseereakzmfldauphfrd.supabase.co/rest/v1/rpc/event_seats_taken";
 
 const UTM = (function(){
