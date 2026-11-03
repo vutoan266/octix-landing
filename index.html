@@ -675,6 +675,20 @@ footer p{color:var(--muted);font-size:15px}
 @media (max-width:980px){.road-bar{display:none}}
 
 /* lớp miễn phí (sự kiện) */
+.hero-ev{margin-top:26px;padding:16px 18px;border-radius:18px;background:rgba(200,243,29,.12);border:1px solid rgba(200,243,29,.55);max-width:34em}
+.hero-ev .ev-tag{font-size:11px}
+.hero-ev b{display:block;font-family:var(--f-display);font-size:clamp(18px,2vw,22px);font-weight:700;margin-top:8px;line-height:1.3}
+.hero-ev .ev-meta{display:block;margin-top:4px;color:rgba(255,255,255,.85);font-size:15px}
+body.has-ev .hero .ctas{margin-top:20px}
+.btn-zalo{background:#0068FF;color:#fff}
+.btn-zalo:hover{transform:translateY(-2px);box-shadow:0 12px 30px -10px rgba(0,104,255,.6)}
+.assure{font-size:13px;color:var(--muted);text-align:center;margin-top:-4px}
+.or-zalo{display:flex;justify-content:center}
+form .or-zalo .btn{width:100%;justify-content:center}
+.teacher{display:flex;gap:14px;align-items:center;margin-top:20px;color:rgba(255,255,255,.9);font-size:15px;text-decoration:none}
+.teacher img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--lime)}
+.teacher b{display:block;font-family:var(--f-display);font-size:16px;color:#fff}
+.teacher u{text-underline-offset:3px;color:var(--lime);font-size:14px}
 .evbar{display:block;background:var(--lime);color:var(--ink);text-decoration:none;font-family:var(--f-display);font-size:14px;font-weight:500;text-align:center;padding:9px 16px;line-height:1.35}
 .evbar b{font-weight:700}
 .evbar .evbar-cta{font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;margin-left:6px}
@@ -763,10 +777,15 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
         <span class="pill tip" tabindex="0" data-tip="Vì Octix không chắc lớp đầu tiên mở chưa :D" aria-label="Lớp Scratch thứ hai tại Phan Thiết. Vì Octix không chắc lớp đầu tiên mở chưa"><b>MỚI</b> Lớp Scratch thứ hai tại Phan Thiết<i class="qi" aria-hidden="true">?</i></span>
         <h1>Con không chỉ chơi game.<span class="l2">Con tự làm ra</span><span class="l2"><span class="typed" id="typed">game</span></span></h1>
         <p class="lead">Octix Phan Thiết: lớp lập trình Scratch cho bé 7–11 tuổi. Kéo thả từng khối lệnh, mỗi buổi bé tự làm xong một game chơi được. Ngay buổi học thử miễn phí, bé tự làm xong một game và mang về chơi cùng ba mẹ.</p>
+        <div class="hero-ev" id="hero-ev" hidden>
+          <span class="ev-tag">Miễn phí · chỉ <span data-ev="cap">10</span> bé</span>
+          <b>Sáng thứ Bảy 14/11: bé 7–11 tuổi tự làm game đầu tiên</b>
+          <span class="ev-meta"><span data-ev="time">8:30–10:00</span> · <span data-ev="place">Tại coffee shop ở Phan Thiết</span></span>
+        </div>
         <div class="ctas">
-          <a class="btn btn-lime" href="#dang-ky">Học thử miễn phí
+          <a class="btn btn-lime" href="#dang-ky" id="hero-cta">Học thử miễn phí
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-ghost" href="#lo-trinh">Xem bé học gì</a>
+          <a class="btn btn-ghost" href="#lo-trinh" id="hero-cta2">Xem bé học gì</a>
         </div>
         <div class="facts">
           <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8F31D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Lớp nhỏ 6–10 bé</span>
@@ -1015,21 +1034,6 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
   </section>
 
   <!-- COMING SOON -->
-  <section id="sap-ra-mat">
-    <div class="wrap">
-      <div class="sec-head rv">
-        <span class="eyebrow">Sắp ra mắt</span>
-        <h2>Học tiếp sau Scratch</h2>
-        <p>Octix đang chuẩn bị thêm các lớp cho bé lớn và người đi làm. Để lại số Zalo, Octix báo ngay khi mở lớp.</p>
-      </div>
-      <div class="soon-grid">
-        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Robotics</h3><span class="age">8–12 tuổi</span><p>Lắp ráp robot và lập trình cho robot di chuyển, né vật cản, làm nhiệm vụ.</p></div>
-        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Tin học trẻ &amp; Python</h3><span class="age">11 tuổi trở lên</span><p>Viết code với Python, ôn luyện thi thuật toán.</p></div>
-        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Lập trình Web &amp; App</h3><span class="age">12 tuổi trở lên</span><p>Tự làm website và ứng dụng điện thoại của riêng mình, từ thiết kế giao diện đến đưa lên mạng cho mọi người dùng.</p></div>
-        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Gia sư AI công sở</h3><span class="age">Người đi làm</span><p>Tận dụng AI để tự động hoá quy trình lặp lại, tạo báo cáo tự động và xây dựng AI agent làm việc cùng bạn: từ email, bảng tính đến kết nối các phần mềm trong công ty.</p></div>
-      </div>
-    </div>
-  </section>
 
   <!-- FAQ -->
   <section id="hoi-dap" style="padding-top:0">
@@ -1060,12 +1064,13 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
         <div>
           <span class="eyebrow" style="color:var(--lime)">Buổi đầu học thử miễn phí</span>
           <h2 style="margin-top:14px">Giữ chỗ cho bé ở lớp đầu tiên</h2>
-          <p class="lead">Buổi học thử 90 phút, bé tự làm xong một game và mang về chơi cùng ba mẹ. Điền thông tin dưới đây, Octix gọi lại qua Zalo để chọn buổi phù hợp với lịch của bé.</p>
+          <p class="lead" id="reg-lead">Buổi học thử 90 phút, bé tự làm xong một game và mang về chơi cùng ba mẹ. Điền thông tin dưới đây, Octix gọi lại qua Zalo để chọn buổi phù hợp với lịch của bé.</p>
           <div class="ev" id="ev" hidden>
             <span class="ev-tag">Miễn phí · tối đa <span data-ev="cap">10</span> bé</span>
             <h3><span data-ev="name">Lớp học lập trình miễn phí</span> <span data-ev="when">sáng thứ Bảy 14/11</span></h3>
             <p><span data-ev="time">8:30–10:00</span> · <span class="tip ev-place" tabindex="0" data-tip="Địa chỉ cụ thể Octix sẽ thông báo khi chốt lịch." aria-label="Tại coffee shop ở Phan Thiết. Địa chỉ cụ thể Octix sẽ thông báo khi chốt lịch."><span data-ev="place">Tại coffee shop ở Phan Thiết</span> <i class="qi" aria-hidden="true">?</i></span> · dành cho bé 7–11 tuổi</p>
           </div>
+          <a class="teacher" href="nguoi-sang-lap/"><img src="nguoi-sang-lap/vu-toan.jpg" alt="Thầy Vũ Toàn" width="56" height="56" loading="lazy"><span><b>Thầy Vũ Toàn trực tiếp dạy lớp</b>Kỹ sư phần mềm 10 năm, cựu học sinh chuyên Tin Trần Hưng Đạo Bình Thuận. <u>Xem thêm</u></span></a>
         </div>
         <form id="form" novalidate>
           <div id="form-fields" style="display:flex;flex-direction:column;gap:16px">
@@ -1075,7 +1080,7 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
               <label for="f-phone">Số điện thoại / Zalo<input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="09xx xxx xxx" required></label>
             </div>
             <div class="row2">
-              <label for="f-kid">Tên bé<input id="f-kid" name="kid" placeholder="Bé Na"></label>
+              <label for="f-kid" id="f-kid-wrap">Tên bé<input id="f-kid" name="kid" placeholder="Bé Na"></label>
               <label for="f-age">Tuổi của bé
                 <select id="f-age" name="age" required>
                   <option value="">Chọn tuổi</option>
@@ -1092,7 +1097,7 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
                 <label for="t4"><input type="checkbox" id="t4" name="time" value="Chiều Chủ nhật"><span>Chiều Chủ nhật</span></label>
               </div>
             </fieldset>
-            <fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
+            <fieldset id="f-laptop" style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
               <legend style="font-size:14px;font-weight:600;padding:0;margin-bottom:8px">Bé đã có laptop hoặc máy tính bảng chưa?</legend>
               <div class="chips">
                 <label for="l1"><input type="radio" id="l1" name="laptop" value="Có, bé sẽ mang theo"><span>Có, bé sẽ mang theo</span></label>
@@ -1100,9 +1105,11 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
               </div>
               <small style="font-size:13px;color:var(--muted)">Không có cũng không sao, Octix sẽ cung cấp máy trong giờ học.</small>
             </fieldset>
-            <label for="f-note">Ghi chú<textarea id="f-note" name="note" rows="2" placeholder="Bé đã biết dùng máy tính chưa, ba mẹ muốn hỏi gì thêm…"></textarea></label>
+            <label for="f-note" id="f-note-wrap">Ghi chú<textarea id="f-note" name="note" rows="2" placeholder="Bé đã biết dùng máy tính chưa, ba mẹ muốn hỏi gì thêm…"></textarea></label>
             <p class="err" id="err" hidden></p>
             <button class="btn btn-brand" type="submit">Gửi đăng ký</button>
+            <p class="assure" id="ev-assure" hidden>Miễn phí, không đặt cọc, không ràng buộc mua khoá. Octix chỉ nhắn Zalo xác nhận chỗ.</p>
+            <div class="or-zalo" id="ev-zalo" hidden><a class="btn btn-zalo" href="https://zalo.me/0862326416" target="_blank" rel="noopener">Hoặc nhắn Zalo giữ chỗ</a></div>
             <p class="form-note">Thông tin chỉ dùng để Octix liên hệ tư vấn cho bé.</p>
           </div>
           <div class="done" id="done" hidden>
@@ -1112,6 +1119,22 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
             <button class="btn btn-brand" type="button" id="again">Đăng ký thêm một bé</button>
           </div>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="sap-ra-mat">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow">Sắp ra mắt</span>
+        <h2>Học tiếp sau Scratch</h2>
+        <p>Octix đang chuẩn bị thêm các lớp cho bé lớn và người đi làm. Để lại số Zalo, Octix báo ngay khi mở lớp.</p>
+      </div>
+      <div class="soon-grid">
+        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Robotics</h3><span class="age">8–12 tuổi</span><p>Lắp ráp robot và lập trình cho robot di chuyển, né vật cản, làm nhiệm vụ.</p></div>
+        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Tin học trẻ &amp; Python</h3><span class="age">11 tuổi trở lên</span><p>Viết code với Python, ôn luyện thi thuật toán.</p></div>
+        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Lập trình Web &amp; App</h3><span class="age">12 tuổi trở lên</span><p>Tự làm website và ứng dụng điện thoại của riêng mình, từ thiết kế giao diện đến đưa lên mạng cho mọi người dùng.</p></div>
+        <div class="soon rv"><span class="tag">Sắp ra mắt</span><h3>Gia sư AI công sở</h3><span class="age">Người đi làm</span><p>Tận dụng AI để tự động hoá quy trình lặp lại, tạo báo cáo tự động và xây dựng AI agent làm việc cùng bạn: từ email, bảng tính đến kết nối các phần mềm trong công ty.</p></div>
       </div>
     </div>
   </section>
@@ -1272,11 +1295,21 @@ const UTM = (function(){
   function evToggle(){
     const on = evSel();
     document.getElementById('f-times').hidden = on;
+    ['f-kid-wrap','f-note-wrap'].forEach(id => document.getElementById(id).hidden = on);
+    document.getElementById('ev-assure').hidden = !on;
+    document.getElementById('reg-lead').textContent = on
+      ? 'Chỉ cần tên, số Zalo và tuổi của bé. Octix nhắn Zalo xác nhận chỗ trong ngày. Cuối buổi ba mẹ được mời vào chơi game cùng con.'
+      : 'Buổi học thử 90 phút, bé tự làm xong một game và mang về chơi cùng ba mẹ. Điền thông tin dưới đây, Octix gọi lại qua Zalo để chọn buổi phù hợp với lịch của bé.';
     evRender();
   }
+  const ph = (ev, props) => { if(window.posthog && posthog.capture) posthog.capture(ev, props||{}); };
+  ['evbar','hero-cta'].forEach(id => document.getElementById(id).addEventListener('click', () => ph('bam_giu_cho', {vi_tri:id, su_kien:EV.on?EVENT.id:''})));
+  let started = false; form.addEventListener('focusin', () => { if(started) return; started = true; ph('bat_dau_dien_form', {su_kien:evSel()?EVENT.id:''}); });
   if(EV.on){
     document.querySelectorAll('[data-ev]').forEach(n => { const v = EVENT[n.dataset.ev]; if(v != null) n.textContent = v; });
-    ['evbar','ev','ev-pick'].forEach(id => document.getElementById(id).hidden = false);
+    ['evbar','ev','ev-pick','hero-ev','ev-zalo'].forEach(id => document.getElementById(id).hidden = false);
+    const hc = document.getElementById('hero-cta'); hc.firstChild.textContent = 'Giữ chỗ 14/11 ';
+    const hc2 = document.getElementById('hero-cta2'); hc2.textContent = 'Nhắn Zalo giữ chỗ'; hc2.href = 'https://zalo.me/0862326416'; hc2.target = '_blank'; hc2.rel = 'noopener';
     document.body.classList.add('has-ev');
     evPick.addEventListener('change', evToggle);
     evToggle();
@@ -1356,7 +1389,7 @@ const UTM = (function(){
 })();
 </script>
 
-<a class="zalo-fab" href="https://zalo.me/0862326416" target="_blank" rel="noopener" aria-label="Chat Zalo với Octix (0862 326 416)"><span class="zi" aria-hidden="true"><b>Zalo</b></span><span class="zt">Chat Zalo</span></a>
+<a class="zalo-fab" href="https://zalo.me/0862326416" target="_blank" rel="noopener" aria-label="Chat Zalo với Octix (0862 326 416)"><span class="zi" aria-hidden="true"><b>Zalo</b></span><span class="zt">Hỏi nhanh qua Zalo</span></a>
 <script>
 /* ===== CHUYỂN ĐỘNG: kể chuyện "Từ ý tưởng đến sản phẩm" ===== */
 (function(){
