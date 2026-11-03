@@ -502,6 +502,9 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-o
 .chips input:focus-visible+span{outline:2px solid var(--brand);outline-offset:2px}
 form .btn{justify-content:center;width:100%}
 .form-note{font-size:13px;color:var(--muted);text-align:center}
+.consent{display:flex!important;flex-direction:row!important;gap:10px;align-items:flex-start;font-size:14px!important;font-weight:400!important;line-height:1.5;color:var(--muted)}
+.consent input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--brand)}
+.consent a{color:var(--brand);text-decoration:underline;text-underline-offset:2px}
 .err{color:#C0261B;font-size:13px;font-weight:500}
 .done{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
 .done h3{font-size:24px}
@@ -1106,11 +1109,12 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
               <small style="font-size:13px;color:var(--muted)">Không có cũng không sao, Octix sẽ cung cấp máy trong giờ học.</small>
             </fieldset>
             <label for="f-note" id="f-note-wrap">Ghi chú<textarea id="f-note" name="note" rows="2" placeholder="Bé đã biết dùng máy tính chưa, ba mẹ muốn hỏi gì thêm…"></textarea></label>
+            <label class="consent" for="f-consent"><input type="checkbox" id="f-consent" name="consent" value="1"><span>Tôi là ba mẹ / người giám hộ của bé và đồng ý để Octix dùng thông tin trên để liên hệ, xác nhận chỗ và xếp lớp, theo <a href="/chinh-sach-bao-mat/" target="_blank" rel="noopener">Chính sách bảo mật</a>.</span></label>
             <p class="err" id="err" hidden></p>
             <button class="btn btn-brand" type="submit">Gửi đăng ký</button>
             <p class="assure" id="ev-assure" hidden>Miễn phí, không đặt cọc, không ràng buộc mua khoá. Octix chỉ nhắn Zalo xác nhận chỗ.</p>
             <div class="or-zalo" id="ev-zalo" hidden><a class="btn btn-zalo" href="https://zalo.me/0862326416" target="_blank" rel="noopener">Hoặc nhắn Zalo giữ chỗ</a></div>
-            <p class="form-note">Thông tin chỉ dùng để Octix liên hệ tư vấn cho bé.</p>
+            <p class="form-note">Thông tin chỉ dùng để Octix liên hệ tư vấn cho bé. Octix không bán hay chia sẻ cho bên khác.</p>
           </div>
           <div class="done" id="done" hidden>
             <span class="ico" aria-hidden="true" style="background:var(--lime);color:var(--ink)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
@@ -1149,6 +1153,7 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
       <p>Octix – octix.vn · Trung tâm lập trình và AI · Phan Thiết</p>
       <p><a href="mailto:lienhe@octix.vn" style="color:inherit;text-decoration:underline;text-underline-offset:3px">lienhe@octix.vn</a></p>
       <p>Zalo: <a href="https://zalo.me/0862326416" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:3px">0862 326 416</a></p>
+      <p><a href="/chinh-sach-bao-mat/" style="color:inherit;text-decoration:underline;text-underline-offset:3px">Chính sách bảo mật</a></p>
       <p>© 2026 Octix</p>
     </div>
   </div>
@@ -1323,6 +1328,7 @@ const UTM = (function(){
     if(!fd.get('parent').toString().trim()){ err.textContent='Ba mẹ nhập tên giúp Octix nhé.'; err.hidden=false; form.querySelector('#f-parent').focus(); return; }
     if(!/^(\+?84|0)\d{9,10}$/.test(phone)){ err.textContent='Số điện thoại chưa đúng. Ba mẹ nhập 10 số, ví dụ 0912 345 678.'; err.hidden=false; form.querySelector('#f-phone').focus(); return; }
     if(!fd.get('age')){ err.textContent='Ba mẹ chọn tuổi của bé giúp Octix nhé.'; err.hidden=false; form.querySelector('#f-age').focus(); return; }
+    if(!fd.get('consent')){ err.textContent='Ba mẹ đánh dấu ô đồng ý ở trên giúp Octix nhé.'; err.hidden=false; form.querySelector('#f-consent').focus(); return; }
     err.hidden=true;
     const isEv = evSel(), isWait = isEv && evFull();
     const data = { parent:fd.get('parent'), phone, kid:fd.get('kid'), age:fd.get('age'), time:isEv?'':fd.getAll('time').join(', '), laptop:fd.get('laptop')||'', note:fd.get('note'), at:new Date().toISOString()};
@@ -1332,7 +1338,7 @@ const UTM = (function(){
       const setLoading=on=>{ if(!btn) return; btn.disabled=on; btn.classList.toggle('loading',on); btn.setAttribute('aria-busy',on?'true':'false');
         btn.innerHTML=on?'<span class="spin" aria-hidden="true"></span>Đang gửi…':btnLabel(); };
       setLoading(true);
-      const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Laptop':data.laptop||'—', 'Ghi chú':data.note||'—',
+      const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Laptop':data.laptop||'—', 'Ghi chú':data.note||'—', 'Đồng ý xử lý dữ liệu':'Có, lúc '+new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})+' (chính sách 03/11/2026)',
         _subject:(isEv?(isWait?'Danh sách chờ ':'Đăng ký ')+EVENT.short:'Đăng ký học thử')+': '+data.parent+' · '+data.phone, _template:'table', _captcha:'false' };
       if(isEv) payload['Lớp']=evText;
       if(UTM.utm_source) payload['Nguồn quảng cáo']=[UTM.utm_source,UTM.utm_medium,UTM.utm_campaign].filter(Boolean).join(' · ');
