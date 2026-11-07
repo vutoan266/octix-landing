@@ -817,13 +817,13 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
         </div>
         <div class="demo-body">
           <div class="code" id="code">
-            <div class="blk ev">khi bấm lá cờ xanh</div>
+            <div class="blk ev">khi bấm vào lá cờ xanh</div>
             <div class="blk va">đặt <span class="v">điểm</span> thành <span class="v">0</span></div>
-            <div class="blk ctl">lặp lại mãi</div>
+            <div class="blk ctl">liên tục</div>
             <div class="blk mo in1">di chuyển <span class="v">6</span> bước</div>
-            <div class="blk mo in1">chạm cạnh thì bật lại</div>
-            <div class="blk ctl in1">nếu chạm <span class="v">ngôi sao</span> thì</div>
-            <div class="blk va in2">tăng <span class="v">điểm</span> thêm <span class="v">1</span></div>
+            <div class="blk mo in1">bật lại nếu chạm cạnh</div>
+            <div class="blk ctl in1">nếu đang chạm <span class="v">ngôi sao</span>? thì</div>
+            <div class="blk va in2">thay đổi <span class="v">điểm</span> một lượng <span class="v">1</span></div>
             <div class="blk lo in2">nói <span class="v">Yeah!</span></div>
           </div>
           <div class="stage" id="stage">
@@ -895,12 +895,12 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
               <text class="note" x="350" y="320">mỗi ngôi sao +1 điểm</text>
             </g>
             <g class="bk">
-              <g><rect x="40" y="56" width="200" height="36" rx="9" fill="#FFAB19"/><text x="54" y="79">khi bấm cờ xanh</text></g>
-              <g><rect x="40" y="96" width="140" height="36" rx="9" fill="#FFAB19"/><text x="54" y="119">lặp lại mãi</text></g>
-              <g><rect x="60" y="136" width="210" height="36" rx="9" fill="#4C97FF"/><text x="74" y="159">đi theo con trỏ chuột</text></g>
-              <g><rect x="60" y="176" width="230" height="36" rx="9" fill="#FFAB19"/><text x="74" y="199">nếu chạm ngôi sao thì</text></g>
-              <g><rect x="80" y="216" width="180" height="36" rx="9" fill="#FF8C1A"/><text x="94" y="239">tăng điểm thêm 1</text></g>
-              <g><rect x="80" y="256" width="190" height="36" rx="9" fill="#9966FF"/><text x="94" y="279">phát âm thanh “ting”</text></g>
+              <g><rect x="40" y="56" width="200" height="36" rx="9" fill="#FFAB19"/><text x="54" y="79">khi bấm vào cờ xanh</text></g>
+              <g><rect x="40" y="96" width="140" height="36" rx="9" fill="#FFAB19"/><text x="54" y="119">liên tục</text></g>
+              <g><rect x="60" y="136" width="210" height="36" rx="9" fill="#4C97FF"/><text x="74" y="159">đi tới con trỏ chuột</text></g>
+              <g><rect x="60" y="176" width="260" height="36" rx="9" fill="#FFAB19"/><text x="74" y="199">nếu đang chạm ngôi sao? thì</text></g>
+              <g><rect x="80" y="216" width="260" height="36" rx="9" fill="#FF8C1A"/><text x="94" y="239">thay đổi điểm một lượng 1</text></g>
+              <g><rect x="80" y="256" width="230" height="36" rx="9" fill="#CF63CF"/><text x="94" y="279">bắt đầu âm thanh “ting”</text></g>
             </g>
             <g class="gm">
               <rect x="30" y="30" width="580" height="340" rx="16" fill="url(#gmSky)"/>
@@ -1363,7 +1363,7 @@ const UTM = (function(){
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const fd = new FormData(form);
-    const phone = (fd.get('phone')||'').toString().replace(/\s/g,'');
+    const phone = (fd.get('phone')||'').toString().replace(/[\s.\-()]/g,'');
     if(!fd.get('parent').toString().trim()){ err.textContent='Ba mẹ nhập tên giúp Octix nhé.'; err.hidden=false; form.querySelector('#f-parent').focus(); return; }
     if(!/^(\+?84|0)\d{9,10}$/.test(phone)){ err.textContent='Số điện thoại chưa đúng. Ba mẹ nhập 10 số, ví dụ 0912 345 678.'; err.hidden=false; form.querySelector('#f-phone').focus(); return; }
     if(!fd.get('age')){ err.textContent='Ba mẹ chọn tuổi của bé giúp Octix nhé.'; err.hidden=false; form.querySelector('#f-age').focus(); return; }
