@@ -141,7 +141,7 @@
      "name": "Bé có cần mang laptop hoặc máy tính bảng không?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Không bắt buộc. Bé chưa có máy thì Octix cung cấp máy trong giờ học. Nếu nhà có laptop hoặc máy tính bảng, bé mang theo sẽ quen máy và tiện luyện tiếp ở nhà."
+      "text": "Có. Ba mẹ chuẩn bị giúp bé một laptop hoặc máy tính bảng/iPad, sạc đầy pin trước giờ học. Octix không chuẩn bị máy cho bé. Học trên máy của mình, bé quen máy và về nhà luyện tiếp được ngay."
      }
     },
     {
@@ -1054,7 +1054,7 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
         <details open><summary>Bé chưa biết dùng máy tính có học được không?</summary><p>Được. Buổi 1 bắt đầu từ cách cầm chuột và kéo thả. Scratch dùng khối lệnh có hình và chữ ngắn, bé đọc được chữ là học được.</p></details>
         <details><summary>Bé mấy tuổi thì vừa?</summary><p>Lớp dành cho bé 7–11 tuổi. Bé lớn hơn mới bắt đầu học lập trình vẫn học được, Octix sẽ giao thử thách khó hơn.</p></details>
         <details><summary>Học ở đâu, vào lúc nào?</summary><p>Lớp học tại Phan Thiết, mỗi tuần 2 buổi, mỗi buổi 90 phút. Octix gửi địa chỉ và giờ học cụ thể khi xác nhận lịch với ba mẹ.</p></details>
-        <details><summary>Bé có cần mang laptop hoặc máy tính bảng không?</summary><p>Không bắt buộc. Bé chưa có máy thì Octix cung cấp máy trong giờ học. Nếu nhà có laptop hoặc máy tính bảng, bé mang theo sẽ quen máy và tiện luyện tiếp ở nhà.</p></details>
+        <details><summary>Bé có cần mang laptop hoặc máy tính bảng không?</summary><p>Có. Ba mẹ chuẩn bị giúp bé một laptop hoặc máy tính bảng/iPad, sạc đầy pin trước giờ học. Octix không chuẩn bị máy cho bé. Học trên máy của mình, bé quen máy và về nhà luyện tiếp được ngay.</p></details>
         <details><summary>Học phí bao nhiêu?</summary><p>Buổi học đầu tiên miễn phí để bé học thử. Nếu bé thích và muốn học tiếp, Octix sẽ thông báo học phí chi tiết cho ba mẹ.</p></details>
         <details><summary>Buổi học thử có gì?</summary><p>90 phút, bé chơi thử một trò chơi rồi tự làm ra chính trò chơi đó. Bé được tạo tài khoản học riêng để về nhà mở lại game. Cuối buổi ba mẹ được mời vào chơi thử game của con.</p></details>
         <details><summary>Khoá học kéo dài bao lâu?</summary><p>24 buổi trong khoảng 12 tuần. Mỗi buổi bé làm xong một game. Buổi cuối là Ngày trình diễn: bé giới thiệu game do chính mình nghĩ ra cho ba mẹ chơi thử.</p></details>
@@ -1105,12 +1105,12 @@ document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.
               </div>
             </fieldset>
             <fieldset id="f-laptop" style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
-              <legend style="font-size:14px;font-weight:600;padding:0;margin-bottom:8px">Bé đã có laptop hoặc máy tính bảng chưa?</legend>
+              <legend style="font-size:14px;font-weight:600;padding:0;margin-bottom:8px">Bé sẽ mang máy nào?</legend>
               <div class="chips">
-                <label for="l1"><input type="radio" id="l1" name="laptop" value="Có, bé sẽ mang theo"><span>Có, bé sẽ mang theo</span></label>
-                <label for="l2"><input type="radio" id="l2" name="laptop" value="Chưa có"><span>Chưa có</span></label>
+                <label for="l1"><input type="radio" id="l1" name="laptop" value="Laptop"><span>Laptop</span></label>
+                <label for="l2"><input type="radio" id="l2" name="laptop" value="Máy tính bảng/iPad"><span>Máy tính bảng/iPad</span></label>
               </div>
-              <small style="font-size:13px;color:var(--muted)">Bé có thể mang laptop hoặc máy tính bảng/iPad. Chưa có thì chọn "Chưa có", Octix sẽ chuẩn bị máy cho bé.</small>
+              <small style="font-size:13px;color:var(--muted)">Ba mẹ chuẩn bị giúp bé laptop hoặc máy tính bảng/iPad, sạc đầy pin. Octix không chuẩn bị máy cho bé.</small>
             </fieldset>
             <label for="f-note" id="f-note-wrap">Ghi chú<textarea id="f-note" name="note" rows="2" placeholder="Bé đã biết dùng máy tính chưa, ba mẹ muốn hỏi gì thêm…"></textarea></label>
             <label class="consent" for="f-consent"><input type="checkbox" id="f-consent" name="consent" value="1"><span>Tôi là ba mẹ / người giám hộ của bé và đồng ý để Octix dùng thông tin trên để liên hệ, xác nhận chỗ và xếp lớp, theo <a href="/chinh-sach-bao-mat/" target="_blank" rel="noopener">Chính sách bảo mật</a>.</span></label>
@@ -1342,7 +1342,7 @@ const UTM = (function(){
     ['f-kid-wrap','f-note-wrap'].forEach(id => document.getElementById(id).hidden = on);
     document.getElementById('ev-assure').hidden = !on;
     document.getElementById('reg-lead').textContent = on
-      ? 'Chỉ cần tên, số Zalo và tuổi của bé. Octix nhắn Zalo xác nhận chỗ trong ngày. Ba mẹ có thể ngồi cà phê tại quán chờ con, cuối buổi chơi thử game của con.'
+      ? 'Chỉ cần tên, số Zalo và tuổi của bé. Octix nhắn Zalo xác nhận chỗ trong ngày. Bé mang theo laptop hoặc máy tính bảng/iPad. Ba mẹ có thể ngồi cà phê tại quán chờ con, cuối buổi chơi thử game của con.'
       : 'Buổi học thử 90 phút, bé tự làm xong một game và mang về chơi cùng ba mẹ. Điền thông tin dưới đây, Octix gọi lại qua Zalo để chọn buổi phù hợp với lịch của bé.';
     evRender();
   }
@@ -1377,7 +1377,7 @@ const UTM = (function(){
       const setLoading=on=>{ if(!btn) return; btn.disabled=on; btn.classList.toggle('loading',on); btn.setAttribute('aria-busy',on?'true':'false');
         btn.innerHTML=on?'<span class="spin" aria-hidden="true"></span>Đang gửi…':btnLabel(); };
       setLoading(true);
-      const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Laptop':data.laptop||'—', 'Ghi chú':data.note||'—', 'Đồng ý xử lý dữ liệu':'Có, lúc '+new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})+' (chính sách 03/11/2026)',
+      const payload={ 'Tên ba mẹ':data.parent, 'SĐT/Zalo':data.phone, 'Tên bé':data.kid||'—', 'Tuổi':data.age, 'Giờ học mong muốn':data.time||'—', 'Máy của bé':data.laptop||'—', 'Ghi chú':data.note||'—', 'Đồng ý xử lý dữ liệu':'Có, lúc '+new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})+' (chính sách 03/11/2026)',
         _subject:(isEv?(isWait?'Danh sách chờ ':'Đăng ký ')+EVENT.short:'Đăng ký học thử')+': '+data.parent+' · '+data.phone, _template:'table', _captcha:'false' };
       if(isEv) payload['Lớp']=evText;
       if(UTM.utm_source) payload['Nguồn quảng cáo']=[UTM.utm_source,UTM.utm_medium,UTM.utm_campaign].filter(Boolean).join(' · ');
